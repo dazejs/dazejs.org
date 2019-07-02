@@ -4,7 +4,7 @@ heroImage: /logo.svg
 heroText: Daze.js
 tagline: Node.js Web Framework
 actionText: 现在开始
-actionLink: /zh/1.x/quick-start
+actionLink: /zh/0.x/quick-start
 ---
 
 ----

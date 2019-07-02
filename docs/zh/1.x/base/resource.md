@@ -86,9 +86,13 @@ class User {
 
 module.exports = User;
 ```
+::: tip
+也可以使用 `this.item(data, validator)` 来调用
+:::
+
 ## 单个资源
 
-使用 `item(data)` 方法来生成单个资源的转换对象
+可以使用 `item(data)` 方法来生成单个资源的转换对象
 
 ```js
 const { Controller, Http } = require('@dazejs/framework');
@@ -173,3 +177,73 @@ module.exports = User;
 如果你想修改包装属性，可以调用资源类提供的 `setKey(key)` 方法
 
 ## 资源嵌套
+
+有时候我们需要在一个资源中调用另一个资源做为资源，我们可以使用 `资源嵌套` 的方式，例如我们转换 `user` 数据的嵌套 `comments` 资源：
+
+`comment` 资源定义:
+
+```js {7}
+const { Resource } = require('@dazejs/framework');
+
+@Resource('comment')
+class Comment {
+  resolve(data) {
+    return {
+      cid: data.id,
+      content: data.content,
+      /// ...more
+    };
+  }
+}
+
+module.exports = Comment;
+```
+
+`user` 资源定义:
+
+```js {8}
+const { Resource } = require('@dazejs/framework');
+
+@Resource('user')
+class User {
+  resolve(user) {
+    return {
+      username: user.username,
+      sex: user.sex == 1 ? 'man' : 'woman',
+      comments: this.resource('comment').collection(user.comments),
+    };
+  }
+}
+
+module.exports = User;
+```
+
+输入数据：
+
+```json
+{
+  "username": "Dazejs",
+  "sex": 1,
+  "comments": [
+    {
+      "id": 100,
+      "content": "im comment"
+    }
+  ]
+}
+```
+
+输出数据：
+
+```json {3,6}
+{
+  "username": "Dazejs",
+  "sex": "man",
+  "comments": [
+    {
+      "cid": 100,
+      "content": "im comment"
+    }
+  ]
+}
+```

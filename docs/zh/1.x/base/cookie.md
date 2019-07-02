@@ -11,7 +11,7 @@ class User {
     index() {
       const key = 'username';
       console.log(this.request.cookie(key))
-      console.log(this.request.getCookie(key)) // this.request.cookie 的别名方法
+      console.log(this.request.cookieValue(key)) // this.request.cookie 的别名方法
     }
 }
 ```
@@ -41,7 +41,7 @@ class User {
     @Http.Get()
     index() {
       const cookie = new Cookie('username', 'Dazejs')
-      return this.response.withCookie(cookie).success({
+      return this.response().withCookie(cookie).success({
         data: 'im data'
       })
     }
@@ -57,7 +57,7 @@ const { Controller, Http, Cookie } = require('@dazejs/framework')
 class User {
     @Http.Get()
     index() {
-      return this.response.cookie('username', 'Dazejs').success({
+      return this.response().cookie('username', 'Dazejs').success({
         data: 'im data'
       })
     }
@@ -116,5 +116,5 @@ class User {
 ```
 
 ::: tip
-单独设置 `signed` 配置后，获取 `cookie` 的时候需要传入一致的 `signed` 配置: `this.request.getCookie('username', { signed: false })`
+单独设置 `signed` 配置后，获取 `cookie` 的时候需要传入一致的 `signed` 配置: `this.request.cookie('username', { signed: false })`
 :::

@@ -98,7 +98,8 @@ module.exports = {
               children: [
                 'quick-start',
               ]
-            }, {
+            },
+            {
               title: '框架基础',
               collapsable: false,
               children: [
@@ -112,6 +113,15 @@ module.exports = {
                 'base/resource',
                 'base/cookie',
                 'base/session',
+              ]
+            },
+            {
+              title: '高级进阶',
+              collapsable: false,
+              children: [
+                'adv/log',
+                'adv/mulenv',
+                'adv/process',
               ]
             }
           ]
