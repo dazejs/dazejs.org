@@ -100,6 +100,14 @@ module.exports = {
               ]
             },
             {
+              title: '核心概念',
+              collapsable: false,
+              children: [
+                'core/container',
+                'core/inject',
+              ]
+            },
+            {
               title: '框架基础',
               collapsable: false,
               children: [
