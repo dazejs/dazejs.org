@@ -33,7 +33,6 @@ $ npm start
 ├── public                      // 静态资源目录
 ├── src                         // 源码目录
 │   ├── app                     // 应用目录
-│   │   ├── app.module.js       // 模块声明文件
 │   │   ├── controller          // 控制器目录
 │   │   ├── middleware          // 中间件目录
 │   ├── config                  // 应用配置目录

@@ -1,8 +1,8 @@
 # 控制器
 
-控制器负责处理传入的请求，并返回对客户端的响应，控制器文件推荐放在 `src/app/controller` 目录下。
+控制器负责处理传入的请求，并返回对客户端的响应。
 
-## 定义控制器
+## 定义
 
 我们使用 `@Controller([prefix])` 装饰器来表示一个控制器类：
 
@@ -10,11 +10,11 @@
 const { Controller } = require('@dazejs/framework')
 
 @Controller()
-class UserController {
+class User {
   // ...
 }
 
-module.exports = UserController
+module.exports = User
 ```
 
 我们也可以使用 `Daze CLI` 工具创建控制器：
@@ -37,14 +37,14 @@ $ daze make controller user
 daze make controller home/user -r
 ```
 
-## 路由端点
+## 端点
 
 框架提供了 `Get`, `Post`, `Put`,`Patch`,`Del`,`Head`,`Option`, `All` 装饰器（位于 `Http` 命名空间下），用于创建访问端点：
 
 ```js
 const { Controller, Http } = require('@dazejs/framework')
 
-// 当前控制器的端点访问以 '/users' 开头
+// 当前控制器的端点访问以 '/users' 开头 (可省略开头 '/')
 @Controller('users')
 class User {
     // get /users
@@ -67,7 +67,7 @@ class User {
 `@All` 装饰器会使用所有 `http` 模块支持的方法，详细信息见 `http` 模块的 `http.METHODS` 属性
 :::
 
-## 路由参数
+## 参数
 
 端点的参数框架会自动注入到控制器方法中：
 
@@ -87,7 +87,7 @@ class User {
 路由参数根据定义顺序注入
 :::
 
-## REST 控制器
+## REST
 
 使用 `@RestController` 装饰器代替 `@Controller` 装饰器，并且默认 `Rest` 方法无需添加装饰器:
 
@@ -163,7 +163,7 @@ class Post {
 | put      | /posts/:id      | save       | 保存你编辑的数据 |
 | delete   | /posts/:id      | destroy    | 删除对应id的内容 |
 
-## 控制器属性
+## 属性
 
 框架提供了控制器内置属性，用来强化控制器的功能, 我们可以用过控制器实例非常便捷的获取请求数据，操作响应等等：
 ```js
@@ -174,8 +174,8 @@ class User {
     @Http.Get(':id')
     show(id) {
         console.log(this.request) // 获取请求实例
-        console.log(this.query) // 获取请求 query
-        console.log(this.querystring) // 获取请求 querystring
+        console.log(this.query) // 获取请求 query，同 this.request.query
+        console.log(this.querystring) // 获取请求 querystring，同 this.request.querystring
         // 更多属性...
     }
 }

@@ -120,3 +120,24 @@ app.get('startTime')
 ```
 
 ## 容器事件
+
+### 绑定事件
+
+容器在每次执行绑定的时候都会触发 `binding` 事件
+
+```js
+app.on('binding', (obj) => {
+  console.log(obj) // obj 包含 abstract、concrete、shared、callable 属性
+})
+```
+
+
+### 解析事件
+
+容器在每次解析对象（包括执行函数、实例化等操作）的时候都会触发 `resolving` 事件
+
+```js
+app.on('resolving', (target) => {
+  console.log(target) // target 即为解析后的对象
+})
+```
