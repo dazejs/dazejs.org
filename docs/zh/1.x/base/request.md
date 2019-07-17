@@ -1,12 +1,12 @@
 # 请求
-大多数情况，我们都需要根据请求的详细信息来进行逻辑处理，我们可以使用 `Request` 的实例来进行请求相关操作。
+很多情况，我们都需要根据请求的详细信息来进行逻辑处理，我们可以使用 `Request` 的实例来进行请求相关操作。
 
 
 ## 请求对象
 
 ### 调用
 
-在控制器中，我们可以直接使用控制器的实例属性获取 `Request` 实例：
+在控制器中，可以直接使用控制器的实例属性获取 `Request` 实例：
 ```js {7}
 const { Controller, Http } = require('@dazejs/framework);
 
@@ -49,7 +49,7 @@ request.getHeader('content-type')
 
 请求方法。
 
-请求方法为字符串。 只读。 示例：'GET'、 'DELETE'。
+请求方法为字符串。 示例：'GET'、 'DELETE'。
 
 
 ### `request.length`
@@ -77,6 +77,10 @@ request.getHeader('content-type')
 
 请求路径名。
 
+
+### `request.query`
+
+根据 `?` 获取原始查询对象
 
 ### `request.querystring`
 
@@ -107,9 +111,9 @@ class Post {
     @Http.Get(':id')
     show(id) {
         // 获取 name 参数，如未获取到则默认返回值 daze
-        const name = request.param('name', 'daze')
+        const name = this.request.param('name', 'daze')
         // 不传参数获取所有输入变量
-        const all = request.param()
+        const all =  this.request.param()
     }
 }
 ```
@@ -121,8 +125,8 @@ const { Controller, Http } = require('@dazejs/framework')
 class Post {
   @Http.Get(':id')
   show(id) {
-    const name1 = request.name1
-    const name2 = request.name2
+    const name1 = this.request.name1
+    const name2 = this.request.name2
   }
 }
 ```
@@ -139,9 +143,9 @@ class Post {
     @Http.Get()
     show(id) {
         // 只获取name与age变量
-        const params1 = req.only(['name', 'age'])
+        const params1 = this.request.only(['name', 'age'])
         // 排除name与age，获取剩余变量
-        const params2 = req.except(['name', 'age'])
+        const params2 = this.request.except(['name', 'age'])
     }
 }
 ```
