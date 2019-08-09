@@ -1,9 +1,31 @@
 # 中间件
 
+中间件可以在请求到控制器之间的逻辑层，可以在控制器之前做一些逻辑处理。
 
 ## 定义
 
-我们创建一个中间件，在参数 `version` 的值为 `v1` 的时候返回一个 `Does not support v1` 的响应信息:
+使用 `@Middleware(name)` 来定义一个中间件：
+
+```js
+const { Middleware } = require('@dazejs/framework')
+
+@Middleware('version-supported')
+class ExampleMiddleware {
+  resolve(request, next) {
+    return next()
+  }
+}
+
+module.exports = ExampleMiddleware
+```
+
+::: warning
+`next()` 必须 `return`, `next()` 总是返回一个 `Response` 对象
+:::
+
+
+
+例子：我们创建一个中间件，在参数 `version` 的值为 `v1` 的时候返回一个 `Does not support v1` 的响应信息
 
 ```js
 const { Middleware } = require('@dazejs/framework')
@@ -22,13 +44,13 @@ module.exports = ExampleMiddleware
 ```
 
 
-## 注册
+## 使用
 
-框架提供了 `@useMiddleware` 装饰器来注册中间件
+框架提供了 `@useMiddleware(name)` 装饰器来使用中间件
 
-### 在控制器中注册中间件
+### 在控制器中使用中间件
 
-对控制器类使用：
+- 对控制器类使用：
 
 ```js {5}
 const { Controller, Http, useMiddleware } = require('@dazejs/framework')
@@ -46,7 +68,7 @@ module.exports = BookController
 `version-supported` 中间件将会对该控制器的所有方法生效
 :::
 
-对控制器方法使用：
+- 对控制器方法使用：
 
 ```js {7}
 const { Controller, Http, useMiddleware } = require('@dazejs/framework')

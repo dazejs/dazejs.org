@@ -40,7 +40,7 @@ console.log(request.headers);
 ```
 ### `request.getHeader(name)`
 
-根据 `name` 获取消息头
+根据 `name` 获取消息头，不区分大小写
 ```js
 request.getHeader('content-type')
 ```

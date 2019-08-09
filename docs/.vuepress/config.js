@@ -104,7 +104,7 @@ module.exports = {
               collapsable: false,
               children: [
                 'core/container',
-                // 'core/autoload',
+                'core/autoload',
               ]
             },
             {
