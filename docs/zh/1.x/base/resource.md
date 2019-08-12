@@ -37,9 +37,9 @@ daze make resource <resourceName>
 daze make resource resource/user
 ``` -->
 
-::: tip
+<!-- ::: tip
 默认创建目录位于 `src/app` 下，创建资源类的的时候可以带上自定义的目录名
-:::
+::: -->
 
 ## 核心概念
 

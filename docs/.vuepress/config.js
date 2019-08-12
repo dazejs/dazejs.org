@@ -117,6 +117,7 @@ module.exports = {
                 'base/response',
                 'base/view',
                 'base/config',
+                'base/service',
                 'base/validate',
                 'base/resource',
                 'base/cookie',
