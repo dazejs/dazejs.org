@@ -24,7 +24,7 @@ module.exports = User;
 ::: tip
 每个资源类都需要实现 `resolve` 方法 
 :::
-
+<!-- 
 我们也可以使用 `Daze CLI` 工具创建控制器：
 
 ```bash
@@ -35,7 +35,7 @@ daze make resource <resourceName>
 
 ```bash
 daze make resource resource/user
-```
+``` -->
 
 ::: tip
 默认创建目录位于 `src/app` 下，创建资源类的的时候可以带上自定义的目录名

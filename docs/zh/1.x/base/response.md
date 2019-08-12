@@ -87,7 +87,7 @@ class Post {
     index() {
         return this.response()
             .setData({ name: 'Zewail' })
-            .code(200)
+            .setCode(200)
             .setHeader('content-type', 'application/json')
             .setHeader({ 'Version': 'v1' })
     }

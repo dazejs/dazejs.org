@@ -16,7 +16,7 @@ class User {
 
 module.exports = User
 ```
-
+<!-- 
 也可以使用 `Daze CLI` 工具创建控制器：
 
 ```txt
@@ -35,7 +35,7 @@ $ daze make controller user
 
 ```bash
 daze make controller home/user -r
-```
+``` -->
 
 ## 定义路由
 
