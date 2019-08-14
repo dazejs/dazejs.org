@@ -15,9 +15,21 @@ $ npm i -g @dazejs/cli@next
 $ daze create project --next
 ```
 
+```bash
+# 安装 CLI 工具
+$ npm install -g @dazejs/cli@next
+
+# 创建 Daze.js 工程
+$ daze create daze-example --next
+```
+
 ## 运行
 安装成功之后，执行以下命令来启动应用服务：
 ```bash
+# 进入工程 目录
+$ cd daze-example
+
+# 开启服务，默认 8005 端口
 $ npm start
 ```
 
