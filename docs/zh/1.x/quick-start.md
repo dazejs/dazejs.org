@@ -33,8 +33,12 @@ $ npm start
 ├── public                      // 静态资源目录
 ├── src                         // 源码目录
 │   ├── app                     // 应用目录
-│   │   ├── controller          // 控制器目录
-│   │   ├── middleware          // 中间件目录
+│   │   ├── controller          // 控制器目录（推荐）
+│   │   ├── middleware          // 中间件目录（推荐）
+│   │   ├── service             // 服务类目录（推荐）
+│   │   ├── resource            // API 资源目录（推荐）
+│   │   ├── component           // 通用组件目录（推荐）
+│   │   ├── validator           // 验证器目录（推荐）
 │   ├── config                  // 应用配置目录
 │   │   ├── app.js
 │   │   ├── cookie.js
