@@ -26,13 +26,13 @@ $ npm start
 
 ### Make the best development experience possible
 ```js
-const { Descorators, Controller } = require('@dazejs/framework')
+const { Controller, Http } = require('@dazejs/framework')
 
-@Descorators.Router('/superman')
-class Superman extends Controller {
-  @Descorators.Get('/create')
+@Controller('/superman')
+class Superman {
+  @Http.Get('/create')
   create() {
-    return res().Created()
+    return this.response().Created()
   }
 }
 ```
