@@ -2,9 +2,11 @@
 
 中间件可以在请求到控制器之间的逻辑层，可以在控制器之前做一些逻辑处理。
 
+![](./assets/middleware-1.png)
+
 ## 定义
 
-使用 `@Middleware(name)` 来定义一个中间件：
+使用 `@Middleware(name)` 来定义一个中间件
 
 ```js
 const { Middleware } = require('@dazejs/framework')
@@ -20,12 +22,12 @@ module.exports = ExampleMiddleware
 ```
 
 ::: warning
-`next()` 必须 `return`, `next()` 总是返回一个 `Response` 对象
+`next()` 的结果必须使用 `return` 返回, `next()` 总是返回一个 `Response` 对象
 :::
 
 
 
-例子：我们创建一个中间件，在参数 `version` 的值为 `v1` 的时候返回一个 `Does not support v1` 的响应信息
+例子：创建一个中间件，在参数 `version` 的值为 `v1` 的时候返回一个 `Does not support v1` 的响应信息
 
 ```js
 const { Middleware } = require('@dazejs/framework')
@@ -34,7 +36,7 @@ const { Middleware } = require('@dazejs/framework')
 class ExampleMiddleware {
   resolve(request, next) {
     if (request.param('version') === 'v1') {
-      return 'Does not support v1'
+      return this.response().BadRequest('Does not support v1');
     }
     return next()
   }
