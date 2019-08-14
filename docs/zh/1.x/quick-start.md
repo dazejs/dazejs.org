@@ -11,8 +11,8 @@
 ## 构建
 使用我们提供的 `Daze CLI` 工具，可以快速建立应用，使用 `npm` 安装命令行工具：
 ```bash
-$ npm i -g @dazejs/cli
-$ daze create project
+$ npm i -g @dazejs/cli@next
+$ daze create project --next
 ```
 
 ## 运行
