@@ -96,6 +96,7 @@ module.exports = {
               title: '开始',
               collapsable: false,
               children: [
+                // 'introduce',
                 'quick-start',
               ]
             },
@@ -103,8 +104,9 @@ module.exports = {
               title: '核心概念',
               collapsable: false,
               children: [
-                'core/container',
                 'core/autoload',
+                'core/container',
+                'core/provider',
               ]
             },
             {
