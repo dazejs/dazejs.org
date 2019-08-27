@@ -17,6 +17,25 @@ class CustomProvider {
 module.exports = CustomProvider;
 ```
 
+## 加载提供者
+
+定义好提供者后，我们需要配置框架让框架加载该提供者
+
+加载提供者的配置在 `src/config/app.js` 配置文件中：
+
+```js
+module.exports = {
+  // ...
+  providers: [
+    // 加载自定义文件
+    require.resolve('../provider/example.js'), 
+    // 加载第三方模块
+    require.resolve('some_module')
+  ],
+  // ...
+}
+```
+
 ## Hooks
 
 框架在运行提供者的时候，会执行两个 `Hook` (`register` 和 `launch`):
@@ -85,3 +104,4 @@ class CustomProvider {
 
 module.exports = CustomProvider;
 ```
+
