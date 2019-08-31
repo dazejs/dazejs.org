@@ -104,8 +104,9 @@ module.exports = {
               title: '核心概念',
               collapsable: false,
               children: [
-                'core/autoload',
                 'core/container',
+                'core/di',
+                'core/autoload',
                 'core/provider',
               ]
             },

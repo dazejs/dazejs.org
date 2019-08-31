@@ -4,13 +4,13 @@
 
 ## 定义提供者
 
-使用 `@Provider()` 装饰器标记这是一个提供者：
+提供者需要继承 `Provider` 基础类
+
 ```js
 
 const { Provider } = require('@dazejs/framework')
 
-@Provider()
-class CustomProvider {
+class CustomProvider extends Provider {
   // ...
 }
 
@@ -47,8 +47,7 @@ module.exports = {
 ```js
 const { Provider } = require('@dazejs/framework')
 
-@Provider()
-class CustomProvider {
+class CustomProvider extends Provider {
   register() {
     // todo
   }
@@ -69,8 +68,7 @@ module.exports = CustomProvider;
 ```js
 const { Provider } = require('@dazejs/framework')
 
-@Provider()
-class CustomProvider {
+class CustomProvider extends Provider {
   lanuch() {
     // todo
   }
@@ -89,8 +87,7 @@ module.exports = CustomProvider;
 ```js
 const { Provider } = require('@dazejs/framework')
 
-@Provider()
-class CustomProvider {
+class CustomProvider extends Provider {
   constructor(app) {
     this.app = app
   }

@@ -9,10 +9,10 @@
 我们可以简单的获取配置实例来操作配置，在控制器中我可以直接通过控制器属性获取：
 
 ```js {7}
-const { Controller, Http } = require('@dazejs/framework')
+const { Controller, Route, Http } = require('@dazejs/framework')
 
-@Controller('users)
-class User {
+@Route('users)
+class User extends Controller {
   @Http.Get()
   index() {
     console.log(this.config.get('app.port'))

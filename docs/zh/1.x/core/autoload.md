@@ -5,13 +5,13 @@
 ## 文件分类
 ### 控制器类
 
-使用 `@Controller(name)` 装饰的类
+继承 `Controller` 基础类
 
 ```js
-const { Controller } = require('@daze/framework');
+const { Route, Controller } = require('@daze/framework');
 
-@Controller('example')
-class Example {
+@Route('example')
+class Example extends Controller {
   // ...
 }
 
@@ -19,13 +19,13 @@ module.exports = Example;
 ```
 
 ### 中间件类
-使用 `@Middleware(name)` 装饰的类
+继承 `Middleware` 基础类
 
 ```js
-const { Middleware } = require('@daze/framework');
+const { Middleware, Component } = require('@daze/framework');
 
-@Middleware('example')
-class Example {
+@Component('example')
+class Example extends Middleware {
   resolve(request, next) {
     // ...
     return next()
@@ -38,13 +38,13 @@ module.exports = Example;
 
 ### 服务类
 
-使用 `@Service(name)` 装饰的类
+继承 `Service` 基础类
 
 ```js
-const { Service } = require('@daze/framework');
+const { Service, Component } = require('@daze/framework');
 
-@Service('example')
-class Example {
+@Component('example')
+class Example extends Service {
   // ...
 }
 
@@ -53,13 +53,13 @@ module.exports = Example;
 
 ### 验证器类
 
-使用 `@Validator(name)` 装饰的类
+继承 `Validator` 基础类
 
 ```js
-const { Validator } = require('@daze/framework');
+const { Validator, Component } = require('@daze/framework');
 
-@Validator('example')
-class Example {
+@Component('example')
+class Example extends Validator {
   resolve(data) {
     return data;
   }
@@ -70,22 +70,20 @@ module.exports = Example;
 
 ### 资源类
 
-使用 `@Resource(name)` 装饰的类
+继承 `Resource` 基础类
 
 ```js
-const { Resource } = require('@daze/framework');
+const { Resource, Component } = require('@daze/framework');
 
-@Resource('example')
-class Example {
+@Component('example')
+class Example extends Resource {
   // ...
 }
 
 module.exports = Example;
 ```
 
-### 通用组件类
-
-使用 `@Component(name)` 装饰的类
+### 通用类
 
 ```js
 const { Component } = require('@daze/framework');

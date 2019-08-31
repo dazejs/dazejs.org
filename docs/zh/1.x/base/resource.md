@@ -4,13 +4,13 @@
 
 ## 资源定义
 
-使用 `@Resource` 装饰器来表示这是一个资源类
+资源是一种特殊的组件，通过继承 `Resource` 基础类来表示这是一个资源类
 
 ```js
-const { Resource } = require('@dazejs/framework');
+const { Resource, Component } = require('@dazejs/framework');
 
-@Resource('user')
-class User {
+@Component('user')
+class User extends Resource {
   resolve(data) {
     return {
       ...data,
@@ -52,10 +52,10 @@ daze make resource resource/user
 在控制器中，我们可以直接返回 `this.resource()` 生成的 `Resource` 实例可以，框架会自动处理
 
 ```js
-const { Controller, Http } = require('@dazejs/framework');
+const { Controller, Route,  Http } = require('@dazejs/framework');
 
-@Controller('/users')
-class User {
+@Route('/users')
+class User extends Controller {
   @Http.Get('/:id')
   show() {
     return this.resource('user').item({
@@ -73,8 +73,8 @@ module.exports = User;
 ```js
 const { Service } = require('@dazejs/framework');
 
-@Service('user')
-class User {
+@Component('user')
+class User extends Service {
   getItemById(id) {
     const user = {
       id,
@@ -95,10 +95,10 @@ module.exports = User;
 可以使用 `item(data)` 方法来生成单个资源的转换对象
 
 ```js
-const { Controller, Http } = require('@dazejs/framework');
+const { Controller, Route, Http } = require('@dazejs/framework');
 
-@Controller('/users')
-class User {
+@Route('/users')
+class User extends Controller {
   @Http.Get('/:id')
   show() {
     return this.resource('user').item({
@@ -115,10 +115,10 @@ module.exports = User;
 使用 `collection(data)` 方法来生成资源集合的转换对象
 
 ```js
-const { Controller, Http } = require('@dazejs/framework');
+const { Controller, Route, Http } = require('@dazejs/framework');
 
-@Controller('/users')
-class User {
+@Route('/users')
+class User extends Controller {
   @Http.Get()
   index() {
     const users = [{
@@ -154,10 +154,10 @@ module.exports = User;
 如果你想要禁止包装最外层资源，可以调用资源类提供的 `withoutKey()` 方法
 
 ```js
-const { Controller, Http } = require('@dazejs/framework');
+const { Controller, Route, Http } = require('@dazejs/framework');
 
-@Controller('/users')
-class User {
+@Route('/users')
+class User extends Controller {
   @Http.Get()
   index() {
     const users = [{
@@ -183,10 +183,10 @@ module.exports = User;
 `comment` 资源定义:
 
 ```js {7}
-const { Resource } = require('@dazejs/framework');
+const { Resource, Component } = require('@dazejs/framework');
 
-@Resource('comment')
-class Comment {
+@Component('comment')
+class Comment extends Resource {
   resolve(data) {
     return {
       cid: data.id,
@@ -202,10 +202,10 @@ module.exports = Comment;
 `user` 资源定义:
 
 ```js {8}
-const { Resource } = require('@dazejs/framework');
+const { Resource, Component } = require('@dazejs/framework');
 
-@Resource('user')
-class User {
+@Component('user')
+class User extends Resource {
   resolve(user) {
     return {
       username: user.username,

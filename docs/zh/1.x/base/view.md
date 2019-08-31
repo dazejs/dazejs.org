@@ -7,10 +7,10 @@
 使用 `render` 方法返回
 
 ```js
-const { Controller, Http, View } = require('@dazejs/framework')
+const { Controller, Route, Http, View } = require('@dazejs/framework')
 
-Controller('examples')
-class Example{
+@Route('examples')
+class Example extends Controller {
   @Http.Get('create')
   create() {
     return this.render('hello.njk', {
@@ -48,10 +48,10 @@ this.assign([key], [value])
 
 ### 示例
 ```js
-const { Controller, Http } = require('@dazejs/framework')
+const { Controller, Route, Http } = require('@dazejs/framework')
 
-@Controller('examples')
-class Example {
+@Route('examples')
+class Example extends Controller {
   // 示例一
   @Http.Get('create')
   create() {

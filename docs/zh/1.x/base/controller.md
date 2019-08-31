@@ -4,49 +4,40 @@
 
 ## 定义
 
-使用 `@Controller([prefix])` 装饰器来表示一个控制器类：
+控制器必须继承基础控制器 `Controller`
 
 ```js {3}
 const { Controller } = require('@dazejs/framework')
 
-@Controller()
-class User {
+class User extends Controller {
   // ...
 }
 
 module.exports = User
 ```
-<!-- 
-也可以使用 `Daze CLI` 工具创建控制器：
-
-```txt
-daze make controller <controllerName> <options>
-Options:
-    -r, --resource  创建 Rest 资源控制器
-```
-
-例如，创建一个 User 控制器：
-
-```bash
-$ daze make controller user
-```
-
-创建一个带资源方法的 Rest 资源控制器：
-
-```bash
-daze make controller home/user -r
-``` -->
 
 ## 定义路由
+
+控制器使用 `@Route([prefix])` 装饰器来表示该控制器使用了路由功能
+
+```js
+const { Controller, Route } = require('@dazejs/framework')
+
+// 当前控制器的端点访问以 '/users' 开头 (可省略开头 '/')
+@Route('/users')
+class User extends Controller {
+  // ...
+}
+```
 
 框架提供了 `Get`, `Post`, `Put`,`Patch`,`Del`,`Head`,`Option`, `All` 装饰器（位于 `Http` 命名空间下），用于创建访问路由：
 
 ```js
-const { Controller, Http } = require('@dazejs/framework')
+const { Controller, Route, Http } = require('@dazejs/framework')
 
 // 当前控制器的端点访问以 '/users' 开头 (可省略开头 '/')
-@Controller('users')
-class User {
+@Route('users')
+class User extends Controller {
     // get /users
     @Http.Get()
     index() {
@@ -72,10 +63,10 @@ class User {
 路由的参数框架会自动注入到控制器方法中：
 
 ```js
-const { Controller, Http } = require('@dazejs/framework')
+const { Controller, Route, Http } = require('@dazejs/framework')
 
-@Controller()
-class User {
+@Route()
+class User extends Controller {
     @Http.Get('/:name/:age')
     index(name, age) {
         // ...
@@ -89,13 +80,13 @@ class User {
 
 ## REST 风格
 
-使用 `@RestController` 装饰器代替 `@Controller` 装饰器，并且默认 `Rest` 方法无需添加装饰器:
+使用 `@Rest` 装饰器代替 `@Route` 装饰器，并且默认 `Rest` 方法无需添加装饰器:
 
 ```js
-const { RestController } = require('@dazejs/framework')
+const { Rest, Controller } = require('@dazejs/framework')
 
-@RestController('posts')
-class Post {
+@Rest('posts')
+class Post extends Controller {
    /**
    * Display a listing of the resource.
    */

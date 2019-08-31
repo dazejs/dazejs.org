@@ -8,10 +8,10 @@
 使用 `@Validator(name)` 来标记这是一个验证器：
 
 ```js
-const { Validator, Email } = require('@dazejs/framework');
+const { Validator, Component, Email } = require('@dazejs/framework');
 
-@Validator('user')
-class User {
+@Component('user')
+class User extends Validator{
   @Email() email;
 }
 
@@ -23,10 +23,10 @@ module.exports = user;
 在需要 `User` 验证器的控制器中，使用`this.validate(data, name)`进行验证：
 
 ```js
-const { Controller, Http } = require('@dazejs/framework');
+const { Controller, Route, Http } = require('@dazejs/framework');
 
-@Controller('/posts)
-class Post {
+@Route('/posts)
+class Post extends Controller {
   @Http.Get()
   index() {
     const data = {
@@ -46,10 +46,10 @@ module.exports = Post;
 或者可以直接使用 `request.validate(name)` 来检查请求数据:
 
 ```js
-const { Controller, Http } = require('@dazejs/framework');
+const { Controller, Route, Http } = require('@dazejs/framework');
 
-@Controller('/posts)
-class Post {
+@Route('/posts)
+class Post extends Controller {
   @Http.Get()
   index() {
     this.request.validate('user');

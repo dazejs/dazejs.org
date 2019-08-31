@@ -8,10 +8,10 @@
 
 在控制器中，可以直接使用控制器的实例属性获取 `Request` 实例：
 ```js {7}
-const { Controller, Http } = require('@dazejs/framework);
+const { Controller, Route, Http } = require('@dazejs/framework);
 
-@Controller('/posts')
-class Post {
+@Route('/posts')
+class Post extends Controller {
     @Http.Get()
     index() {
         console.log(this.request)
@@ -227,10 +227,10 @@ param方法可以获取body，url参数的输入变量，所有参数可以通�
 :::
 
 ```js {8,10}
-const { Controller, Http } = require('@dazejs/framework')
+const { Controller, Route, Http } = require('@dazejs/framework')
 
-@Controller('posts')
-class Post {
+@Route('posts')
+class Post extends Controller {
     @Http.Get(':id')
     show(id) {
         // 获取 name 参数，如未获取到则默认返回值 daze
@@ -242,10 +242,10 @@ class Post {
 ```
 #### getter
 ```js {7,8}
-const { Controller, Http } = require('@dazejs/framework')
+const { Controller, Route, Http } = require('@dazejs/framework')
 
-@Controller('posts')
-class Post {
+@Route('posts')
+class Post extends Controller {
   @Http.Get(':id')
   show(id) {
     const name1 = this.request.name1
@@ -259,10 +259,10 @@ class Post {
 通过 `only` 与 `except` 方法筛选需要或者不需要的输入变量
 
 ```js {8,10}
-const { Controller, Http } = require('@dazejs/framework')
+const { Controller, Route, Http } = require('@dazejs/framework')
 
-@Controller('posts')
-class Post {
+@Route('posts')
+class Post extends Controller {
     @Http.Get()
     show(id) {
         // 只获取name与age变量
