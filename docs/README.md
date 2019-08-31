@@ -26,10 +26,10 @@ $ npm start
 
 ### Make the best development experience possible
 ```js
-const { Controller, Http } = require('@dazejs/framework')
+const { Controller, Route, Http } = require('@dazejs/framework')
 
-@Controller('/superman')
-class Superman {
+@Route('/superman')
+class Superman extends Controller {
   @Http.Get('/create')
   create() {
     return this.response().Created()
