@@ -10,17 +10,13 @@
  
 ## 构建
 使用我们提供的 `Daze CLI` 工具，可以快速建立应用，使用 `npm` 安装命令行工具：
-```bash
-$ npm i -g @dazejs/cli@next
-$ daze create project --next
-```
 
 ```bash
 # 安装 CLI 工具
-$ npm install -g @dazejs/cli@next
+$ npm install -g @dazejs/cli
 
 # 创建 Daze.js 工程
-$ daze create daze-example --next
+$ daze create daze-example
 ```
 
 ## 运行
@@ -29,11 +25,11 @@ $ daze create daze-example --next
 # 进入工程 目录
 $ cd daze-example
 
-# 开启服务，默认 8005 端口
+# 开启服务，默认 8080 端口
 $ npm start
 ```
 
-打开浏览器并访问 `http://localhost:8005` 即可看到默认展示信息。
+打开浏览器并访问 `http://localhost:8080` 即可看到默认展示信息。
 
 ## 目录
 

@@ -219,8 +219,8 @@ request.acceptsLanguages(['en', 'es']);
 
 ### 获取参数
 
-#### `Request#param([name [,default]])`
-请求对象提供了 `param` 方法来获取变量值：
+#### `Request#getParam([name [,default]])`
+请求对象提供了 `getParam` 和 `getParams` 方法来获取变量值：
 
 ::: tip
 param方法可以获取body，url参数的输入变量，所有参数可以通过param方法统一获取
@@ -234,9 +234,9 @@ class Post extends Controller {
     @Http.Get(':id')
     show(id) {
         // 获取 name 参数，如未获取到则默认返回值 daze
-        const name = this.request.param('name', 'daze')
-        // 不传参数获取所有输入变量
-        const all =  this.request.param()
+        const name = this.request.getParam('name', 'daze')
+        // 获取所有输入变量
+        const all =  this.request.getParams()
     }
 }
 ```

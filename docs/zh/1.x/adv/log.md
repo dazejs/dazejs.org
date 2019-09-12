@@ -62,7 +62,7 @@ module.exports = {
 - `eol`: 打印的结束行字符串，默认 `os.EOL`
 - `stream`: 支持任何 `Node.js Stream`，当流是`对象模式`, 写入 `info` 对象，否则写入 `info[MESSAGE]`
 
-### `mongodb`
+<!-- ### `mongodb`
 
 将日志写入 `Mongodb`
 
@@ -78,4 +78,4 @@ module.exports = {
 - `cappedSize`:
 - `cappedMax`:
 - `tryReconnect`:
-- `expireAfterSeconds`:
+- `expireAfterSeconds`: -->
