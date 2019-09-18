@@ -107,6 +107,7 @@ module.exports = {
                 'core/container',
                 'core/di',
                 'core/autoload',
+                'core/component',
                 'core/provider',
               ]
             },
