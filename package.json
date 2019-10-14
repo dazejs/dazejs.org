@@ -5,16 +5,12 @@
   "main": "index.js",
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "commit": "npx git-cz"
+    "docs:build": "vuepress build docs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "vuepress": "^0.14.9"
-  },
-  "dependencies": {
-    "commitizen": "^4.0.3"
   }
 }
