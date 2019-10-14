@@ -9,9 +9,9 @@
 ## 开启多进程
 在 `src/app/config/app.js` 配置 `cluster.enable` 的值 为 `true` 即可开启多进程模型:
 
-```js
+```ts
 // app.js
-module.exports = {
+export default {
   // ...
   cluster: {
     enable: true, /* enable cluster mode */
@@ -48,9 +48,9 @@ workers 的值为子进程的数量，默认为0（当前 cpu 的个数）
 
 messenger事件接收可以在框架的`src/config/messenger.js`中进行定义：
 
-```js
+```ts
 // src/config/messenger.js
-module.exports = messenger => {
+export default messenger => {
     // 监听 test 事件
     // 广播后所有工作进程都会触发该事件
     messenger.on('test', data => {
@@ -60,7 +60,7 @@ module.exports = messenger => {
 }
 
 // PostController.js
-class PostController {
+export default class PostController {
     index() {
         // 使用daze全局对象
         // 调用 broadcast 广播数据到所有工作进程

@@ -6,8 +6,8 @@
 
 日志配置文件位于 `src/config/logger.js`
 
-```js
-module.exports = {
+```ts
+export default {
   default: 'console',
   channels: {
     console: {

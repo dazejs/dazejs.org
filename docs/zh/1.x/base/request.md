@@ -7,18 +7,17 @@
 ### 调用
 
 在控制器中，可以直接使用控制器的实例属性获取 `Request` 实例：
-```js {7}
-const { Controller, Route, Http } = require('@dazejs/framework);
+```ts {7}
+import { Controller, Route, Http } from '@dazejs/framework;
 
 @Route('/posts')
-class Post extends Controller {
+export default class Post extends Controller {
     @Http.Get()
     index() {
         console.log(this.request)
     }
 }
 
-module.exports = Post;
 ```
 
 
@@ -258,11 +257,11 @@ class Post extends Controller {
 
 通过 `only` 与 `except` 方法筛选需要或者不需要的输入变量
 
-```js {8,10}
-const { Controller, Route, Http } = require('@dazejs/framework')
+```ts {8,10}
+import { Controller, Route, Http }from '@dazejs/framework'
 
 @Route('posts')
-class Post extends Controller {
+export default class Post extends Controller {
     @Http.Get()
     show(id) {
         // 只获取name与age变量

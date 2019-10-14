@@ -6,15 +6,13 @@
 
 在 `Daze.js` 中，容器中注册的所有模块我们都称之为 `组件（Component）`, 组件之间可以相互依赖， 我们通过 `@Component` 装饰器来声明组件
 
-```js {3}
-const { Component } = require('@dazejs/framework');
+```ts {3}
+import { Component } from '@dazejs/framework'
 
 @Component('example')
-class Example {
+export default class Example {
   // ...
 }
-
-module.exports = Example;
 ```
 
 ## 注入
@@ -23,11 +21,11 @@ module.exports = Example;
 
 - 注入到类属性中
 
-```js {5}
-const { Route, Http, Controller, useComponent } = require('@dazejs/framework');
+```ts {5}
+import { Route, Http, Controller, useComponent } from '@dazejs/framework'
 
 @Route('/examples')
-class Example extends Controller {
+export default class Example extends Controller {
   @useComponent('example') exampleComponent;
 
   @Http.Get()
@@ -41,29 +39,27 @@ module.exports = Example;
 
 - 注入到类方法中
 
-```js {6}
-const { Route, Http, Controller, useComponent } = require('@dazejs/framework');
+```ts {6}
+import { Route, Http, Controller, useComponent } from '@dazejs/framework'
 
 @Route('/examples')
-class Example extends Controller {
+export default class Example extends Controller {
   @Http.Get()
   @useComponent('example')
   index(exampleComponent) {
     // ...
   }
 }
-
-module.exports = Example;
 ```
 
 - 注入到类构造函数中
 
-```js {4}
-const { Route, Http, Controller, useComponent } = require('@dazejs/framework');
+```ts {4}
+import { Route, Http, Controller, useComponent } from '@dazejs/framework'
 
 @Route('/examples')
 @useComponent('example')
-class Example extends Controller {
+export default class Example extends Controller {
   constructor(exampleComponent) {
     this.exampleComponent = exampleComponent;
   }
@@ -72,6 +68,4 @@ class Example extends Controller {
     // ...
   }
 }
-
-module.exports = Example;
 ```

@@ -4,11 +4,11 @@
 ## 输出
 
 大部分情况只要直接在控制器方法返回数据即可
-```js {7}
-const { Controller, Route, Http } = require('@dazejs/framework')
+```ts {7}
+import { Controller, Route, Http } from '@dazejs/framework'
 
 @Route('/users')
-class User extends Controller {
+export default class User extends Controller {
     @Http.Get('/:id')
     show(id) {
         return `user id: ${id}`
@@ -17,11 +17,11 @@ class User extends Controller {
 ```
 
 也可以使用 `this.response` 方法
-```js {7}
-const { Response, Route, Controller, Http } = require('@dazejs/framework')
+```ts {7}
+import { Response, Route, Controller, Http } from '@dazejs/framework'
 
 @Route('users')
-class User extends Controller {
+export default class User extends Controller {
     @Http.Get()
     show(id) {
         return this.response('im a data', 200)
@@ -42,11 +42,11 @@ class User extends Controller {
 
 我们也可以使用 `response().setData([data])` 方法设置需要响应的数据
 
-```js
-const { Controller, Route, Response, Http } = require('@dazejs/framework')
+```ts
+import { Controller, Route, Response, Http } from '@dazejs/framework'
 
 @Route('posts')
-class Post extends Controller {
+export default class Post extends Controller {
     @Http.Get()
     index() {
         return this.response().setData({
@@ -60,11 +60,11 @@ class Post extends Controller {
 
 使用 `response().setCode([code])` 方法设置需要响应状态码
 
-```js
-const { Controller, Route, Response, Http } = require('@dazejs/framework')
+```ts
+import { Controller, Route, Response, Http } from '@dazejs/framework'
 
 @Route('posts')
-class Post extends Controller {
+export default class Post extends Controller {
     @Http.Get()
     index() {
         return this.response().setData({
@@ -78,11 +78,11 @@ class Post extends Controller {
 
 使用 `response().setHeader(<name>, [value])` 方法设置响应头
 
-```js {10,11}
-const { Controller, Route, Response, Http } = require('@dazejs/framework')
+```ts {10,11}
+import { Controller, Route, Response, Http } from '@dazejs/framework'
 
 @Route('posts')
-class Post extends Controller {
+export default class Post extends Controller {
     @Http.Get()
     index() {
         return this.response()
@@ -102,11 +102,11 @@ setData、setCode、setHeader 等方法支持链式调用，状态码默认为 2
 
 使用 `response.success([data [, code = 200]])` 方法返回一个成功响应：
 
-```js {7}
-const { Controller, Route, Response, Http } = require('@dazejs/framework')
+```ts {7}
+import { Controller, Route, Response, Http } from '@dazejs/framework'
 
 @Route('/posts')
-class Post extends Controller {
+export default class Post extends Controller {
     @Http.Get('/:id')
     show(id) {
         return this.response().success('im a data', 200)
@@ -116,11 +116,11 @@ class Post extends Controller {
 
 框架对常用成功状态码进行了封装，可以简单的调用这些方法，返回想要的信息和状态码:
 
-```js {8}
-const { Controller, Route, Response, Http } = require('@dazejs/framework')
+```ts {8}
+import { Controller, Route, Response, Http } from '@dazejs/framework'
 
 @Route('/users')
-class User extends Controller {
+export default class User extends Controller {
     @Http.Get('/:id')
     show(id) {
         // 返回一个 200 状态码的响应
@@ -158,11 +158,11 @@ class User extends Controller {
 
 使用 `response().error([message [, code = 404]])` 方法来抛出一个 `http` 异常：
 
-```js {10}
-const { Controller, Route, Http } = require('@dazejs/framework')
+```ts {10}
+import { Controller, Route, Http } from '@dazejs/framework'
 
 @Route('users)
-class User extends Controller {
+export default class User extends Controller {
     @Http.Get(':id')
     show(id) {
         // ...
@@ -176,11 +176,11 @@ class User extends Controller {
 
 框架对常用错误状态码进行了封装，可以简单的调用这些方法，返回想要的信息和状态码:
 
-```js {10}
-const { Controller, Route, Http } = require('@dazejs/framework')
+```ts {10}
+import { Controller, Route, Http } from '@dazejs/framework'
 
 @Route('users)
-class User extends Controller {
+export default class User extends Controller {
     @Http.Get(':id')
     show(id) {
         // ...
@@ -241,11 +241,11 @@ class User extends Controller {
 #### 重定向到地址
 
 使用 `this.redirect` 函数:
-```js
-const { Redirect, Route, Controller, Http } = require('@dazejs/framework')
+```ts
+import { Redirect, Route, Controller, Http } from '@dazejs/framework'
 
 @Route()
-class User extends Controller {
+export default class User extends Controller {
     @Http.Get(':id')
     show(id) {
         return this.redirect('http://www.google.com/')
@@ -256,11 +256,11 @@ class User extends Controller {
 
 使用 `Redirect` 实例的 `go` 方法:
 
-```js
-const { Route, Controller, Http } = require('@dazejs/framework')
+```ts
+import { Route, Controller, Http } from '@dazejs/framework'
 
 @Route()
-class Post extends Controller {
+export default class Post extends Controller {
      @Http.Get()
     index() {
         // ...
@@ -279,11 +279,11 @@ class Post extends Controller {
 
 我们可以在重定向的时候添加一次性的 session，该 session 会在下次请求的时候被清除，这在处理页面错误提示的时候非常有用
 
-```js
-const { Route, Controller, Http } = require('@dazejs/framework')
+```ts
+import { Route, Controller, Http } from '@dazejs/framework'
 
 @Route()
-class Post extends Controller {
+export default class Post extends Controller {
     @Http.Get()
     index() {
         // ...
@@ -312,11 +312,11 @@ class Post extends Controller {
 
 使用 `download`来下载文件
 
-```js
-const { Route, Controller, Http } = require('@dazejs/framework')
+```ts
+import { Route, Controller, Http } from '@dazejs/framework'
 
 @Route()
-class Post extends Controller {
+export default class Post extends Controller {
     
     @Http.Get()
     download() {

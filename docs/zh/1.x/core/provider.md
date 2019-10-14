@@ -6,15 +6,12 @@
 
 提供者需要继承 `Provider` 基础类
 
-```js
+```ts
+import { Provider } from '@dazejs/framework'
 
-const { Provider } = require('@dazejs/framework')
-
-class CustomProvider extends Provider {
+export default class CustomProvider extends Provider {
   // ...
 }
-
-module.exports = CustomProvider;
 ```
 
 ## 加载提供者
@@ -23,8 +20,8 @@ module.exports = CustomProvider;
 
 加载提供者的配置在 `src/config/app.js` 配置文件中：
 
-```js
-module.exports = {
+```ts
+export default {
   // ...
   providers: [
     // 加载自定义文件
@@ -44,16 +41,15 @@ module.exports = {
 
 每次注册提供者框架都会调用提供者的 `register` 方法
 
-```js
-const { Provider } = require('@dazejs/framework')
+```ts
+import { Provider } from '@dazejs/framework'
 
-class CustomProvider extends Provider {
+export default class CustomProvider extends Provider {
   register() {
     // todo
   }
 }
 
-module.exports = CustomProvider;
 ```
 
 ::: tip
@@ -65,16 +61,14 @@ module.exports = CustomProvider;
 框架会在执行完所有提供者的 `register Hook` 之后执行 `launch`, 所以我们可以在 `launch` 方法中获取到所有已注册的提供者，而无需关心注册顺序
 
 
-```js
-const { Provider } = require('@dazejs/framework')
+```ts
+import { Provider } from '@dazejs/framework'
 
-class CustomProvider extends Provider {
+export default class CustomProvider extends Provider {
   lanuch() {
     // todo
   }
 }
-
-module.exports = CustomProvider;
 ```
 ::: tip
 `lanuch` 方法支持异步
@@ -84,10 +78,10 @@ module.exports = CustomProvider;
 
 绝大部分情况我们都可以在 `register` 方法中进行绑定容器操作
 
-```js
-const { Provider } = require('@dazejs/framework')
+```ts
+import { Provider } from '@dazejs/framework'
 
-class CustomProvider extends Provider {
+export default class CustomProvider extends Provider {
   constructor(app) {
     this.app = app
   }
@@ -98,7 +92,5 @@ class CustomProvider extends Provider {
     }, true);
   }
 }
-
-module.exports = CustomProvider;
 ```
 

@@ -62,11 +62,11 @@ class User extends Controller {
 
 路由的参数框架会自动注入到控制器方法中：
 
-```js
-const { Controller, Route, Http } = require('@dazejs/framework')
+```ts
+import { Controller, Route, Http } from '@daze/framework';
 
 @Route()
-class User extends Controller {
+export default class User extends Controller {
     @Http.Get('/:name/:age')
     index(name, age) {
         // ...
@@ -82,11 +82,11 @@ class User extends Controller {
 
 使用 `@Rest` 装饰器代替 `@Route` 装饰器，并且默认 `Rest` 方法无需添加装饰器:
 
-```js
-const { Rest, Controller } = require('@dazejs/framework')
+```ts
+import { Controller, Rest } from '@daze/framework';
 
 @Rest('posts')
-class Post extends Controller {
+export default class Post extends Controller {
    /**
    * Display a listing of the resource.
    */

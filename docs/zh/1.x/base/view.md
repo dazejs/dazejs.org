@@ -6,11 +6,11 @@
 ## 渲染模板
 使用 `render` 方法返回
 
-```js
-const { Controller, Route, Http, View } = require('@dazejs/framework')
+```ts
+import { Controller, Route, Http, View } from '@dazejs/framework'
 
 @Route('examples')
-class Example extends Controller {
+export default class Example extends Controller {
   @Http.Get('create')
   create() {
     return this.render('hello.njk', {
@@ -19,7 +19,6 @@ class Example extends Controller {
   }
 }
 
-module.exports = Example
 
 ```
 
@@ -27,7 +26,7 @@ module.exports = Example
 
 路径也支持子目录传递
 
-```js
+```ts
 return this.render('path/to/hello.njk', {
   name: 'Zewail'
 })
@@ -47,11 +46,11 @@ this.assign([key], [value])
 ```
 
 ### 示例
-```js
-const { Controller, Route, Http } = require('@dazejs/framework')
+```ts
+import { Controller, Route, Http } from '@dazejs/framework'
 
 @Route('examples')
-class Example extends Controller {
+export default class Example extends Controller {
   // 示例一
   @Http.Get('create')
   create() {
@@ -68,5 +67,4 @@ class Example extends Controller {
   }
 }
 
-module.exports = Example
 ```

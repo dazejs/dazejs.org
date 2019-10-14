@@ -8,17 +8,16 @@
 
 `Middleware` 是一种特殊的组件，通过继承 `Middleware` 基础类来表示这是一个中间件类
 
-```js
-const { Middleware, Component } = require('@dazejs/framework')
+```ts
+import { Middleware, Component }from '@dazejs/framework'
 
 @Component('version-supported')
-class ExampleMiddleware extends Middleware {
+export default class ExampleMiddleware extends Middleware {
   resolve(request, next) {
     return next()
   }
 }
 
-module.exports = ExampleMiddleware
 ```
 
 ::: warning
@@ -29,11 +28,11 @@ module.exports = ExampleMiddleware
 
 例子：创建一个中间件，在参数 `version` 的值为 `v1` 的时候返回一个 `Does not support v1` 的响应信息
 
-```js
-const { Middleware, Component } = require('@dazejs/framework')
+```ts
+import { Middleware, Component }from '@dazejs/framework'
 
 @Component('version-supported')
-class ExampleMiddleware extends Middleware {
+export default class ExampleMiddleware extends Middleware {
   resolve(request, next) {
     if (request.param('version') === 'v1') {
       return this.response().BadRequest('Does not support v1');
@@ -42,7 +41,6 @@ class ExampleMiddleware extends Middleware {
   }
 }
 
-module.exports = ExampleMiddleware
 ```
 
 
@@ -54,16 +52,15 @@ module.exports = ExampleMiddleware
 
 - 对控制器类使用：
 
-```js {5}
-const { Controller, Route, Http, useMiddleware } = require('@dazejs/framework')
+```ts {5}
+import { Controller, Route, Http, useMiddleware }from '@dazejs/framework'
 
 @Route('/books')
 @useMiddleware('version-supported')
-class BookController extends Controller {
+export default class BookController extends Controller {
   // ...
 }
 
-module.exports = BookController
 ```
 
 ::: tip
@@ -72,11 +69,11 @@ module.exports = BookController
 
 - 对控制器方法使用：
 
-```js {7}
-const { Controller, Route, Http, useMiddleware } = require('@dazejs/framework')
+```ts {7}
+import { Controller, Route, Http, useMiddleware }from '@dazejs/framework'
 
 @Route('/books')
-class BookController extends Controller {
+export default class BookController extends Controller {
   @Http.Get()
   @useMiddleware('version-supported')
   index() {
@@ -84,7 +81,6 @@ class BookController extends Controller {
   }
 }
 
-module.exports = BookController
 ```
 
 ::: tip
@@ -93,27 +89,26 @@ module.exports = BookController
 
 ## 前置
 
-```js
-const { Middleware, Component } = require('@dazejs/framework')
+```ts
+import { Middleware, Component }from '@dazejs/framework'
 
 @Component('example')
-class ExampleMiddleware extends Middleware {
+export default class ExampleMiddleware extends Middleware {
   resolve(request, next) {
     // todo
     return next()
   }
 }
 
-module.exports = ExampleMiddleware
 ```
 
 ## 后置
 
-```js
-const { Middleware, Component } = require('@dazejs/framework')
+```ts
+import { Middleware, Component }from '@dazejs/framework'
 
 @Component('example')
-class ExampleMiddleware extends Middleware {
+export default class ExampleMiddleware extends Middleware {
   async resolve(request, next) {
     const response = await next()
     // todo
@@ -121,7 +116,6 @@ class ExampleMiddleware extends Middleware {
   }
 }
 
-module.exports = ExampleMiddleware
 ```
 
 ::: tip

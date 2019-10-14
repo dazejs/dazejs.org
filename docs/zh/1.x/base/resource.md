@@ -6,11 +6,11 @@
 
 资源是一种特殊的组件，通过继承 `Resource` 基础类来表示这是一个资源类
 
-```js
-const { Resource, Component } = require('@dazejs/framework');
+```ts
+import { Resource, Component } from '@dazejs/framework';
 
 @Component('user')
-class User extends Resource {
+export default class User extends Resource {
   resolve(data) {
     return {
       ...data,
@@ -18,7 +18,6 @@ class User extends Resource {
   }
 }
 
-module.exports = User;
 ```
 
 ::: tip
@@ -51,11 +50,11 @@ daze make resource resource/user
 
 在控制器中，我们可以直接返回 `this.resource()` 生成的 `Resource` 实例可以，框架会自动处理
 
-```js
-const { Controller, Route,  Http } = require('@dazejs/framework');
+```ts
+import { Controller, Route,  Http } from '@dazejs/framework';
 
 @Route('/users')
-class User extends Controller {
+export default class User extends Controller {
   @Http.Get('/:id')
   show() {
     return this.resource('user').item({
@@ -64,17 +63,16 @@ class User extends Controller {
   }
 }
 
-module.exports = User;
 ```
 
 不是在控制器中，我们可以调用 `Resource` 实例的 `transform()` 方法来手动转换
 
 
-```js
-const { Service } = require('@dazejs/framework');
+```ts
+import { Service } from '@dazejs/framework';
 
 @Component('user')
-class User extends Service {
+export default class User extends Service {
   getItemById(id) {
     const user = {
       id,
@@ -84,7 +82,6 @@ class User extends Service {
   }
 }
 
-module.exports = User;
 ```
 ::: tip
 也可以使用 `this.item(data, validator)` 来调用
@@ -94,11 +91,11 @@ module.exports = User;
 
 可以使用 `item(data)` 方法来生成单个资源的转换对象
 
-```js
-const { Controller, Route, Http } = require('@dazejs/framework');
+```ts
+import { Controller, Route, Http } from '@dazejs/framework';
 
 @Route('/users')
-class User extends Controller {
+export default class User extends Controller {
   @Http.Get('/:id')
   show() {
     return this.resource('user').item({
@@ -107,18 +104,17 @@ class User extends Controller {
   }
 }
 
-module.exports = User;
 ```
 
 ## 资源集合
 
 使用 `collection(data)` 方法来生成资源集合的转换对象
 
-```js
-const { Controller, Route, Http } = require('@dazejs/framework');
+```ts
+import { Controller, Route, Http } from '@dazejs/framework';
 
 @Route('/users')
-class User extends Controller {
+export default class User extends Controller {
   @Http.Get()
   index() {
     const users = [{
@@ -132,7 +128,6 @@ class User extends Controller {
   }
 }
 
-module.exports = User;
 ```
 
 ## 数据包装
@@ -153,11 +148,11 @@ module.exports = User;
 
 如果你想要禁止包装最外层资源，可以调用资源类提供的 `withoutKey()` 方法
 
-```js
-const { Controller, Route, Http } = require('@dazejs/framework');
+```ts
+import { Controller, Route, Http } from '@dazejs/framework';
 
 @Route('/users')
-class User extends Controller {
+export default class User extends Controller {
   @Http.Get()
   index() {
     const users = [{
@@ -171,7 +166,6 @@ class User extends Controller {
   }
 }
 
-module.exports = User;
 ```
 
 如果你想修改包装属性，可以调用资源类提供的 `setKey(key)` 方法
@@ -182,11 +176,11 @@ module.exports = User;
 
 `comment` 资源定义:
 
-```js {7}
-const { Resource, Component } = require('@dazejs/framework');
+```ts {7}
+import { Resource, Component } from '@dazejs/framework';
 
 @Component('comment')
-class Comment extends Resource {
+export default class Comment extends Resource {
   resolve(data) {
     return {
       cid: data.id,
@@ -196,16 +190,15 @@ class Comment extends Resource {
   }
 }
 
-module.exports = Comment;
 ```
 
 `user` 资源定义:
 
-```js {8}
-const { Resource, Component } = require('@dazejs/framework');
+```ts {8}
+import { Resource, Component } from '@dazejs/framework';
 
 @Component('user')
-class User extends Resource {
+export default class User extends Resource {
   resolve(user) {
     return {
       username: user.username,
@@ -215,7 +208,6 @@ class User extends Resource {
   }
 }
 
-module.exports = User;
 ```
 
 输入数据：

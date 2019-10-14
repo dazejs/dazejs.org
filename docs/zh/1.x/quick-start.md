@@ -19,6 +19,10 @@ $ npm install -g @dazejs/cli
 $ daze create daze-example
 ```
 
+::: tip
+支持选择 typescript 和 javascript 开发环境
+:::
+
 ## 运行
 安装成功之后，执行以下命令来启动应用服务：
 ```bash

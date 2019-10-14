@@ -6,15 +6,13 @@
 
 组件就是一个普通的类，借助于框架的自动加载机制，我们使用 `@Component(name)` 装饰器来进行组件的注册：
 
-```js {3}
-const { Component } = require('@dazejs/framework')
+```ts {3}
+import { Component } from '@dazejs/framework'
 
 @Component('example')
-class Example {
+export default class Example {
   // ...
 }
-
-module.exports = Example
 ```
 
 ::: tip
@@ -25,11 +23,11 @@ module.exports = Example
 
 对于普通组件，我能可以通过 `@useComponent(name)` 装饰器进行注入来进行使用
 
-```js
-const { Controller, Route, Http, useComponent } = require('@dazejs/framework')
+```ts
+import { Controller, Route, Http, useComponent } from '@dazejs/framework'
 
 @Route('/example')
-class Example extends Controller {
+export default class Example extends Controller {
   @useComponent('example') exampleComponent;
 
   @Http.Get('/:id')
@@ -37,8 +35,6 @@ class Example extends Controller {
     // use this.exampleComponent
   }
 }
-
-module.exports = Example
 
 ```
 

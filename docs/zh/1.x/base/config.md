@@ -8,18 +8,16 @@
 
 我们可以简单的获取配置实例来操作配置，在控制器中我可以直接通过控制器属性获取：
 
-```js {7}
-const { Controller, Route, Http } = require('@dazejs/framework')
+```ts {7}
+import { Controller, Route, Http } from '@daze/framework';
 
-@Route('users)
-class User extends Controller {
+@Route('users')
+export default class User extends Controller {
   @Http.Get()
   index() {
     console.log(this.config.get('app.port'))
   }
 }
-
-module.exports = User
 ```
 
 ## 读取配置
@@ -53,8 +51,8 @@ this.config.set('app.custom_config', 'haha')
 
 然后我们在该文件中填充以下内容：
 
-```js
-module.exports = {
+```ts
+export default {
   prop1: 1,
   prop2: 2,
 }
@@ -77,17 +75,17 @@ this.config.get('custom.prop1')
 ```txt
 src
 |- config
-| |- app.js  
-| |- app.prod.js
-| |- app.dev.js
+| |- app.ts  
+| |- app.prod.ts
+| |- app.dev.ts
 ```
 
-`app.js` 为框架默认加载的配置文件，`app.dev.js` 为框架在开发环境加载的配置文件，`app.prod.js` 为框架在生产环境加载的配置文件，也就是说，当运行环境为生产环境时，框架会使用 `app.prod.js` 覆盖 `app.js` 中的同名属性（如果为对象）
+`app.ts` 为框架默认加载的配置文件，`app.dev.ts` 为框架在开发环境加载的配置文件，`app.prod.ts` 为框架在生产环境加载的配置文件，也就是说，当运行环境为生产环境时，框架会使用 `app.prod.ts` 覆盖 `app.ts` 中的同名属性（如果为对象）
 
 ::: warning 注意
 对象同名属性直接替换，不会再进行二次比较
 :::
 
 ::: tip 提示
-`app.xxx.js` 环境命名使用 `DAZE_ENV` 环境变量, 具体参考环境变量章节
+`app.xxx.ts` 环境命名使用 `DAZE_ENV` 环境变量, 具体参考环境变量章节
 :::
