@@ -6,38 +6,37 @@
 
 控制器必须继承基础控制器 `Controller`
 
-```js {3}
-const { Controller } = require('@dazejs/framework')
+```ts {3}
+import { Controller } from '@dazejs/framework'
 
-class User extends Controller {
+export default class User extends Controller {
   // ...
 }
 
-module.exports = User
 ```
 
 ## 定义路由
 
 控制器使用 `@Route([prefix])` 装饰器来表示该控制器使用了路由功能
 
-```js
-const { Controller, Route } = require('@dazejs/framework')
+```ts
+import { Controller, Route } from '@dazejs/framework'
 
 // 当前控制器的端点访问以 '/users' 开头 (可省略开头 '/')
 @Route('/users')
-class User extends Controller {
+export default class User extends Controller {
   // ...
 }
 ```
 
 框架提供了 `Get`, `Post`, `Put`,`Patch`,`Del`,`Head`,`Option`, `All` 装饰器（位于 `Http` 命名空间下），用于创建访问路由：
 
-```js
-const { Controller, Route, Http } = require('@dazejs/framework')
+```ts
+import { Controller, Route, Http } from '@dazejs/framework'
 
 // 当前控制器的端点访问以 '/users' 开头 (可省略开头 '/')
 @Route('users')
-class User extends Controller {
+export default class User extends Controller {
     // get /users
     @Http.Get()
     index() {
@@ -157,11 +156,11 @@ export default class Post extends Controller {
 ## 内置属性
 
 框架提供了控制器内置属性，用来强化控制器的功能, 我们可以用过控制器实例非常便捷的获取请求数据，操作响应等等：
-```js
-const { Controller, Http } = require('@dazejs/framework')
+```ts
+import { Controller, Http } from '@dazejs/framework'
 
 @Controller()
-class User {
+export default class User {
     @Http.Get(':id')
     show(id) {
         console.log(this.request) // 获取请求实例
@@ -171,7 +170,6 @@ class User {
     }
 }
 
-module.exports = User
 ```
 ### **控制器提供了以下内置属性**
 
