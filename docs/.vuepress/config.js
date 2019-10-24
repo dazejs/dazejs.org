@@ -56,41 +56,6 @@ module.exports = {
           { text: 'Github', link: 'https://github.com/dazejs/daze' },
         ],
         sidebar: {
-          '/zh/0.x/': [
-            {
-              title: '序',
-              collapsable: false,
-              children: [
-                'quick-start',
-              ],
-            },
-            {
-              title: '框架基础',
-              collapsable: false,
-              children: [
-                'base/module',
-                'base/controller',
-                'base/request',
-                'base/response',
-                'base/view',
-                'base/config',
-                'base/middleware',
-                'base/service',
-                'base/validate',
-              ]
-            },
-            {
-              title: '高级进阶',
-              collapsable: false,
-              children: [
-                'adv/cookie',
-                'adv/session',
-                'adv/mulenv',
-                'adv/csrf',
-                'adv/process',
-              ]
-            }
-          ],
           '/zh/1.x/': [
             {
               title: '开始',
