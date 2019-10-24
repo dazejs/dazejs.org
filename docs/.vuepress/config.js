@@ -47,10 +47,6 @@ module.exports = {
             {
               text: '1.x',
               link: '/zh/1.x/quick-start'
-            },
-            {
-              text: '0.x',
-              link: '/zh/0.x/quick-start'
             }
           ] },
           { text: 'Github', link: 'https://github.com/dazejs/daze' },
