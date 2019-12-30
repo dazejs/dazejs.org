@@ -42,11 +42,15 @@ module.exports = {
         // 当前 locale 的 algolia docsearch 选项
         algolia: {},
         nav: [
-          { text: '文档', link: '/zh/1.x/quick-start' },
+          { text: '文档', link: '/zh/2.x/quick-start' },
           { text: '历史版本', items: [
             {
               text: '1.x',
               link: '/zh/1.x/quick-start'
+            },
+            {
+              text: '2.x',
+              link: '/zh/2.x/quick-start'
             }
           ] },
           { text: 'Github', link: 'https://github.com/dazejs/daze' },
@@ -69,6 +73,52 @@ module.exports = {
                 'core/di',
                 'core/autoload',
                 'core/component',
+                'core/provider',
+              ]
+            },
+            {
+              title: '框架基础',
+              collapsable: false,
+              children: [
+                'base/controller',
+                'base/middleware',
+                'base/request',
+                'base/response',
+                'base/view',
+                'base/config',
+                'base/service',
+                'base/validate',
+                'base/resource',
+                'base/cookie',
+                'base/session',
+              ]
+            },
+            {
+              title: '高级进阶',
+              collapsable: false,
+              children: [
+                'adv/log',
+                'adv/mulenv',
+                'adv/process',
+              ]
+            }
+          ],
+          '/zh/2.x/': [
+            {
+              title: '开始',
+              collapsable: false,
+              children: [
+                // 'introduce',
+                'quick-start',
+              ]
+            },
+            {
+              title: '核心概念',
+              collapsable: false,
+              children: [
+                'core/container',
+                'core/di',
+                'core/autoload',
                 'core/provider',
               ]
             },

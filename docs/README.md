@@ -4,7 +4,7 @@ heroImage: /logo.svg
 heroText: Daze.js
 tagline: Node.js Web Framework
 actionText: Get Start
-actionLink: /zh/1.x/quick-start
+actionLink: /zh/2.x/quick-start
 ---
 
 ----
@@ -25,11 +25,11 @@ $ npm start
 ```
 
 ### Make the best development experience possible
-```js
-const { Controller, Route, Http } = require('@dazejs/framework')
+```ts
+import { Controller, Route, Http } from '@dazejs/framework'
 
 @Route('/superman')
-class Superman extends Controller {
+export default class Superman extends Controller {
   @Http.Get('/create')
   create() {
     return this.response().Created()
