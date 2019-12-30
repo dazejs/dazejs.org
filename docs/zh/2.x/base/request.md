@@ -12,7 +12,7 @@ import { Controller, route, http } from '@dazejs/framework;
 
 @route('/posts')
 export default class Post extends Controller {
-    @Http.Get()
+    @http.get()
     index() {
         console.log(this.request)
     }

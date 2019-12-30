@@ -2,7 +2,7 @@
 home: true
 heroImage: /logo.svg
 heroText: Daze.js
-tagline: Node.js Web Framework
+tagline: 基于 Node.js 的 Web 服务端框架
 actionText: 现在开始
 actionLink: /zh/2.x/quick-start
 ---
