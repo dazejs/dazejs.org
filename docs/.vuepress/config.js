@@ -133,6 +133,7 @@ module.exports = {
                 'base/view',
                 'base/config',
                 'base/service',
+                'base/database',
                 'base/validate',
                 'base/resource',
                 'base/cookie',

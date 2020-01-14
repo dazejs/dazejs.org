@@ -20,17 +20,17 @@ $ daze create daze-example --next
 # 进入工程 目录
 $ cd daze-example
 
-# 开启服务，默认 8005 端口
+# 开启服务，默认 8080 端口
 $ npm start
 ```
 
 ### 做最好的开发体验
 ```ts
-import { Controller, Route, Http } from '@dazejs/framework'
+import { Controller, route, http } from '@dazejs/framework'
 
-@Route('/superman')
+@route('/superman')
 export default class Superman extends Controller {
-  @Http.Get('/create')
+  @http.get('/create')
   create() {
     return this.response().Created()
   }

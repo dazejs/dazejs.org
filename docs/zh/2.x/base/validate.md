@@ -21,12 +21,12 @@ export default class User extends Validator{
 在需要 `User` 验证器的控制器中，使用`this.validate(data, name)`进行验证：
 
 ```ts
-import { Controller, Route, Http } from '@dazejs/framework';
+import { Controller, route, http } from '@dazejs/framework';
 import userValidator from '../validator/user'
 
-@Route('/posts)
+@route('/posts)
 export default class Post extends Controller {
-  @Http.Get()
+  @http.get()
   index() {
     const data = {
       email: 'xxx@xxx.com'
