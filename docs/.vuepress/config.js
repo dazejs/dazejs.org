@@ -134,6 +134,7 @@ module.exports = {
                 'base/config',
                 'base/service',
                 'base/database',
+                'base/model',
                 'base/validate',
                 'base/resource',
                 'base/cookie',
@@ -148,7 +149,14 @@ module.exports = {
                 'adv/mulenv',
                 'adv/process',
               ]
-            }
+            },
+            // {
+            //   title: '扩展',
+            //   collapsable: false,
+            //   children: [
+            //     'extend/dubbo'
+            //   ]
+            // }
           ]
         }
       }

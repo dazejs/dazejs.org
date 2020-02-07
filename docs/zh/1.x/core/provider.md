@@ -33,6 +33,7 @@ export default {
 }
 ```
 
+
 ## Hooks
 
 框架在运行提供者的时候，会执行两个 `Hook` (`register` 和 `launch`):
@@ -73,6 +74,37 @@ export default class CustomProvider extends Provider {
 ::: tip
 `lanuch` 方法支持异步
 :::
+
+
+## 服务提供
+
+在 `Provider` 中使用 `@provide` 来向容器注册内容
+
+```ts
+import { Provider, provide } from '@dazejs/framework'
+
+export default class CustomProvider extends Provider {
+  @provide()
+  example() {
+    return new Example()
+  }
+}
+```
+
+上诉例子相当于
+
+```ts
+import { Provider } from '@dazejs/framework'
+
+export default class CustomProvider extends Provider {
+  register() {
+    this.app.singleton('example', () => {
+      return new Example()
+    }, true)
+  }
+}
+
+```
 
 ## 注册时绑定
 
