@@ -1,0 +1,28 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": [
+            "chrome >= 47"
+          ]
+        },
+        "useBuiltIns": "usage",
+        "corejs": 3
+      }
+    ],
+    "@babel/preset-typescript",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "lib",
+        "style": true
+      }
+    ]
+  ]
+}
