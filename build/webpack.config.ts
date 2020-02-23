@@ -165,7 +165,8 @@ if (isDev) {
     contentBase: path.join(__dirname, '../dist'),
     publicPath: '/assets/',
     hot: true,
-    port: 9966
+    port: 9966,
+    historyApiFallback: true
   }
 }
 
