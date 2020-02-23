@@ -3,6 +3,7 @@ import autoprefixer from 'autoprefixer';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 import { Configuration } from 'webpack';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -12,11 +13,13 @@ const config: Configuration = {
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-source-map' : false,
   entry: { 
-    app: ['../src/index']
+    app: [
+      path.resolve(__dirname, '../src/index.tsx')
+    ]
   },
   output: {
     path: path.resolve(__dirname, '../dist/assets'),
-    filename: '[name].[hash].js',
+    filename: isDev ? 'bundle.js' : '[name].[hash].js',
     publicPath: '/assets/'
   },
   module: {
@@ -31,7 +34,7 @@ const config: Configuration = {
       },
       {
         test: /\.less$/,
-        loader: [
+        use: [
           isDev && 'style-loader',
           isProd && {
             loader: MiniCssExtractPlugin.loader,
@@ -54,8 +57,41 @@ const config: Configuration = {
               ],
             },
           },
-          'less-loader'
-        ]
+          {
+            loader: 'less-loader',
+            options: {
+              sourceMap: true,
+              javascriptEnabled: true,
+            }
+          }
+        ].filter(Boolean)
+      },
+      {
+        test: /\.css$/,
+        use: [
+          isDev && 'style-loader',
+          isProd && {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: true,
+            },
+          },
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            ident: 'postcss',
+            options: {
+              sourceMap: 'inline',
+              plugins: () => [
+                autoprefixer({
+                  flexbox: 'no-2009',
+                  overrideBrowserslist: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4']
+                }),
+                // require('cssnano')()
+              ],
+            },
+          },
+        ].filter(Boolean)
       },
       {
         test: /\.(eot|woff|svg|ttf|woff2|gif)(\?|$)/,
@@ -76,6 +112,7 @@ const config: Configuration = {
       filename: path.resolve(__dirname, '../dist/index.html'),
       template: path.resolve(__dirname, './tpl/index.html'),
       inject: true,
+      alwaysWriteToDisk: true,
       minify: isProd ? {
         removeComments: true,
         collapseWhitespace: true,
@@ -88,10 +125,11 @@ const config: Configuration = {
         minifyCSS: true,
         minifyURLs: true,
       } : undefined,
-    })
+    }),
+    new HtmlWebpackHarddiskPlugin(),
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.less', '.scss', '.css'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.scss', '.css'],
     modules: [
       'node_modules',
       'src',
@@ -118,8 +156,8 @@ const config: Configuration = {
     },
     minimizer: [
       new OptimizeCSSAssetsPlugin({})
-    ]
-  }
+    ],
+  },
 };
 
 if (isDev) {
@@ -127,7 +165,7 @@ if (isDev) {
     contentBase: path.join(__dirname, '../dist'),
     publicPath: '/assets/',
     hot: true,
-    port: 9898
+    port: 9966
   }
 }
 
