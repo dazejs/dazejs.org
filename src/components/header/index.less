@@ -1,0 +1,34 @@
+@import '../../styles/default.less';
+
+.app-header {
+  box-shadow: 0 2px 8px #f0f1f2;
+  background-color: #fff;
+  z-index: 10;
+  position: relative;
+  height: 64px;
+  .menu {
+    float: right;
+    overflow: hidden;
+    height: 64px;
+    .ant-menu {
+      line-height: 60px;
+    }
+    .ant-menu-horizontal {
+      border-bottom: none;
+      & > .ant-menu-item {
+        border-top: 2px solid transparent;
+        &:hover {
+          border-top: 2px solid @primary-color;
+          border-bottom: 2px solid transparent;
+        }
+      }
+      & > .ant-menu-item-selected {
+        border-top: 2px solid @primary-color;
+        border-bottom: 2px solid transparent;
+        a {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+}
