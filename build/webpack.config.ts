@@ -62,6 +62,9 @@ const config: Configuration = {
             options: {
               sourceMap: true,
               javascriptEnabled: true,
+              modifyVars: {
+                'primary-color': '#f94628',
+              }
             }
           }
         ].filter(Boolean)
@@ -98,7 +101,7 @@ const config: Configuration = {
         loader: 'file-loader?name=[hash].[ext]'
       },
       {
-        test: /\.(png|jpg)$/,
+        test: /\.(png|jpg|jpeg)$/,
         loader: 'url-loader?limit=1200&name=[hash].[ext]'
       }
     ]
@@ -133,7 +136,10 @@ const config: Configuration = {
     modules: [
       'node_modules',
       'src',
-    ]
+    ],
+    alias: {
+      '@src': path.resolve(__dirname, '../src')
+    }
   },
   optimization: process.env.NODE_ENV === 'devlopment' ? {} : {
     runtimeChunk: {
