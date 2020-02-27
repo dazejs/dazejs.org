@@ -5,6 +5,7 @@
       "ES2017",
       "DOM"
     ],
+    "module": "commonjs",
     "baseUrl": "./",
     "allowJs": false,
     "declaration": true,

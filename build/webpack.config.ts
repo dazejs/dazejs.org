@@ -23,6 +23,7 @@ const config: Configuration = {
     publicPath: '/assets/'
   },
   module: {
+    exprContextCritical: false,
     // 文件中如果缺少exports时会直接报错而不是警告
     strictExportPresence: true,
     rules: [
@@ -103,7 +104,11 @@ const config: Configuration = {
       {
         test: /\.(png|jpg|jpeg)$/,
         loader: 'url-loader?limit=1200&name=[hash].[ext]'
-      }
+      },
+      {
+        test: /\.md$/,
+        loader: 'raw-loader',
+      },
     ]
   },
   plugins: [
@@ -129,7 +134,7 @@ const config: Configuration = {
         minifyURLs: true,
       } : undefined,
     }),
-    new HtmlWebpackHarddiskPlugin(),
+    new HtmlWebpackHarddiskPlugin()
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.scss', '.css'],
@@ -138,8 +143,19 @@ const config: Configuration = {
       'src',
     ],
     alias: {
-      '@src': path.resolve(__dirname, '../src')
+      '@src': path.resolve(__dirname, '../src'),
+      '@docs': path.resolve(__dirname, '../docs'),
     }
+  },
+  node: {
+    module: 'empty',
+    dgram: 'empty',
+    dns: 'mock',
+    fs: 'empty',
+    http2: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty',
   },
   optimization: process.env.NODE_ENV === 'devlopment' ? {} : {
     runtimeChunk: {
@@ -164,6 +180,7 @@ const config: Configuration = {
       new OptimizeCSSAssetsPlugin({})
     ],
   },
+
 };
 
 if (isDev) {

@@ -2,6 +2,8 @@
 
 控制器负责处理传入的请求，并返回对客户端的响应。
 
+---
+
 ## 定义
 
 控制器必须继承基础控制器 `Controller`
@@ -14,6 +16,8 @@ export default class User extends Controller {
 }
 
 ```
+
+---
 
 ## 定义路由
 
@@ -53,9 +57,9 @@ export default class User extends Controller {
 
 上面代码会自动创建`get`方法访问的`/users`的端点与`put`方法访问的`/users/:id`的端点
 
-::: warning
-`@All` 装饰器会使用所有 `http` 模块支持的方法，详细信息见 `http` 模块的 `http.METHODS` 属性
-:::
+> `@http.all` 装饰器会使用所有 `http` 模块支持的方法，详细信息见 `http` 模块的 `http.METHODS` 属性
+
+---
 
 ## 路由参数
 
@@ -73,13 +77,13 @@ export default class User extends Controller {
 }
 ```
 
-::: tip
-路由参数根据定义顺序注入
-:::
+> 路由参数根据定义顺序注入
+
+---
 
 ## REST 风格
 
-使用 `@rest` 装饰器代替 `@Route` 装饰器，并且默认 `Rest` 方法无需添加装饰器:
+使用 `@rest` 装饰器代替 `@route` 装饰器，并且默认 `Rest` 方法无需添加装饰器:
 
 ```ts
 import { Controller, rest } from '@daze/framework';
@@ -152,47 +156,3 @@ export default class Post extends Controller {
 | get      | /posts/:id/edit | edit(id)       | 编辑（显示表单） |
 | put      | /posts/:id      | save(id)       | 保存你编辑的数据 |
 | delete   | /posts/:id      | destroy(id)    | 删除对应id的内容 |
-<!-- 
-## 内置属性
-
-框架提供了控制器内置属性，用来强化控制器的功能, 我们可以用过控制器实例非常便捷的获取请求数据，操作响应等等：
-```ts
-import { Controller, Http } from '@dazejs/framework'
-
-@Controller()
-export default class User {
-    @Http.Get(':id')
-    show(id) {
-        console.log(this.request) // 获取请求实例
-        console.log(this.query) // 获取请求 query，同 this.request.query
-        console.log(this.querystring) // 获取请求 querystring，同 this.request.querystring
-        // 更多属性...
-    }
-}
-
-```
-### **控制器提供了以下内置属性**
-
-### `this.app`
-
-框架 Application 对象实例
-
-### `this.config`
-
-配置对象
-
-### `this.request`
-
-请求对象
-
-### `this.view(template [, vars])`
-
-用来创建视图实例
-
-### `this.render(template [, vars])`
-
-渲染视图模板文件， 同 `this.view().render(template [, vars])`
-
-### `this.assign(key, value)`
-
-传递数据到视图模板，同 `this.view().assign(key, value)` -->

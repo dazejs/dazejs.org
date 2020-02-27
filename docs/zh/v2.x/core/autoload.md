@@ -2,7 +2,9 @@
 
 `Daze.js` 会自动扫描 `src/app` 目录，按功能分类加载，我们可以通过继承不同类型的基类，来进行功能分类
 
-## 文件分类
+---
+
+## 模块分类
 ### 控制器类
 
 继承 `Controller` 基础类
@@ -31,9 +33,7 @@ export default class Example extends Middleware {
 }
 
 ```
-::: tip
-中间件类必须实现 resolve 方法
-:::
+> 中间件类必须实现 resolve 方法
 
 ### 服务类
 
@@ -82,6 +82,8 @@ export default class Example {
 }
 
 ```
+
+---
 
 ## 忽略加载
 

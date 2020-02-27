@@ -1,8 +1,10 @@
-# 配置
+# 应用配置
 
-框架提供了强大的配置管理功能，可以根据环境运行不同的配置
+框架提供了强大的配置管理功能，可以根据运行环境的不同使用指定的配置
 
-配置文件位于 `src/config` 目录下
+配置文件位于 `src/config` 目录下，框架提供了一些默认配置，也可以自行定义任何配置
+
+---
 
 ## 配置实例
 
@@ -20,6 +22,8 @@ export default class User extends Controller {
 }
 ```
 
+---
+
 ## 读取配置
 
 ### `config.get([name [, default]])`
@@ -30,6 +34,8 @@ export default class User extends Controller {
 this.config.get('app.name', 'dazejs')
 ```
 
+---
+
 ## 修改配置
 
 ### `config.set(name, value)`
@@ -39,9 +45,9 @@ this.config.get('app.name', 'dazejs')
 this.config.set('app.custom_config', 'haha')
 ```
 
-::: warning ⚠️
-如果开启了多进程，修改的配置只会在当前进程生效
-:::
+> 如果开启了多进程，修改的配置只会在当前进程生效
+
+--- 
 
 ## 自定义配置
 
@@ -58,15 +64,15 @@ export default {
 }
 ```
 
-::: tip
-我们也可以直接定义函数或者数组等数据类型
-:::
+> 我们也可以直接定义函数或者数组等数据类型
 
 然后我们就可以使用 `get` 方法获取配置内容了：
 
 ```js
 this.config.get('custom.prop1')
 ```
+
+---
 
 ## 多环境配置
 
@@ -82,10 +88,6 @@ src
 
 `app.ts` 为框架默认加载的配置文件，`app.dev.ts` 为框架在开发环境加载的配置文件，`app.prod.ts` 为框架在生产环境加载的配置文件，也就是说，当运行环境为生产环境时，框架会使用 `app.prod.ts` 覆盖 `app.ts` 中的同名属性（如果为对象）
 
-::: warning 注意
-对象同名属性直接替换，不会再进行二次比较
-:::
+> 对象同名属性直接替换，不会再进行二次比较
 
-::: tip 提示
-`app.xxx.ts` 环境命名使用 `DAZE_ENV` 环境变量, 具体参考环境变量章节
-:::
+> `app.xxx.ts` 环境命名使用 `DAZE_ENV` 环境变量, 具体参考环境变量章节

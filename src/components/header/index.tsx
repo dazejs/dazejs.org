@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout, Row, Col, Menu, Icon } from 'antd'
 import Logo from '@src/assets/logo-small.png';
 import './index.less'
+import { Link } from 'react-router-dom'
 
 const { Header } = Layout
 const { SubMenu } = Menu
@@ -23,8 +24,12 @@ export default function () {
               defaultSelectedKeys={['2']}
               style={{ lineHeight: '64px' }}
             >
-              <Menu.Item key="1">首页</Menu.Item>
-              <Menu.Item key="2">文档</Menu.Item>
+              <Menu.Item key="1">
+                <Link to="/">首页</Link>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/docs/v2.x/quick-start">文档</Link>
+              </Menu.Item>
               <Menu.Item key="3">生态</Menu.Item>
               <SubMenu title={(<span>
                 版本<Icon type="caret-down" style={{ color: "#aaa", marginLeft: 5 }} />

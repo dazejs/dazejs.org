@@ -13,7 +13,6 @@ const { Content } = Layout
 
 export default function () {
 
-
   useEffect(() => {
     hljs.initHighlightingOnLoad()
   }, [])
@@ -62,7 +61,7 @@ export default function () {
               <p className="h2">开始吧！</p>
               <div className="code-box">
                 <pre>
-                  <code className="bash">
+                  <code className="hljs bash">
                     {`  $ npm i -g @dazejs/cli
 
   $ daze create project-name

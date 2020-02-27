@@ -6,7 +6,7 @@ export default function () {
     <div className="footer-box">
       <p className="logo">DAZE.JS</p>
       <div className="content">
-        23424234
+        {/* 23424234 */}
       </div>
     </div>
   </div>

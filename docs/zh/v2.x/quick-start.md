@@ -1,12 +1,12 @@
 # 快速上手
 我们从这里开始创建一个 `Daze.js` 应用。
 
+---
+
 ## 环境
 为了更好的性能与稳定性，我们推荐使用 `LTS` 版本的 `Node.js`
 
-::: tip 版本
-#### Node.js > 10.15.x
-:::
+> Node.js > 10.15.x
  
 ## 构建
 使用我们提供的 `Daze CLI` 工具，可以快速建立应用，使用 `npm` 安装命令行工具：
@@ -19,9 +19,7 @@ $ npm install -g @dazejs/cli
 $ daze create daze-example
 ```
 
-::: tip
-支持选择 typescript 和 javascript 开发环境
-:::
+> 支持选择 typescript 和 javascript 开发环境
 
 ## 运行
 安装成功之后，执行以下命令来启动应用服务：
@@ -64,6 +62,4 @@ $ npm start
     └── hello.html
 ```
 
-::: tip
-框架约定了默认的目录结构，但是可以通过获取 `Application` 实例的时候指定目录结构
-:::
+> 框架约定了默认的目录结构，但是可以通过获取 `Application` 实例的时候指定目录结构
