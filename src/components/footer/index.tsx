@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.less'
 import { Row, Col, Icon } from 'antd'
+import { Link } from 'react-router-dom'
 
 export default function () {
   return <div className="app-footer">
@@ -11,22 +12,22 @@ export default function () {
           <Col xxl={6} xl={6} lg={12} md={12} sm={24} xs={24}>
             <h4>特性</h4>
             <div className="item">
-              <a href="/docs/core/container">IOC 容器</a>
+              <Link to="/docs/core/container">IOC 容器</Link>
             </div>
             <div className="item">
-              <a href="/docs/core/privider">提供者模式</a>
+              <Link to="/docs/core/privider">提供者模式</Link>
             </div>
             <div className="item">
-              <a href="/docs/core/autoload">自动加载</a>
+              <Link to="/docs/core/autoload">自动加载</Link>
             </div>
             <div className="item">
-              <a href="/docs/base/controller">路由</a>
+              <Link to="/docs/base/controller">路由</Link>
             </div>
             <div className="item">
-              <a href="/docs/base/database">数据库</a>
+              <Link to="/docs/base/database">数据库</Link>
             </div>
             <div className="item">
-              <a href="/docs/adv/process">多进程</a>
+              <Link to="/docs/adv/process">多进程</Link>
             </div>
           </Col>
           <Col xxl={6} xl={6} lg={12} md={12} sm={24} xs={24}>
@@ -41,16 +42,13 @@ export default function () {
           <Col xxl={6} xl={6} lg={12} md={12} sm={24} xs={24}>
             <h4>帮助</h4>
             <div className="item">
-              <a href="">Github</a>
+              <a href="https://github.com/dazejs/daze" target="_blank">Github</a>
             </div>
             <div className="item">
-              <a href="">更新记录</a>
+              <a href="https://github.com/dazejs/daze/blob/master/packages/framework/CHANGELOG.md" target="_blank">更新记录</a>
             </div>
             <div className="item">
-              <a href="">讨论列表</a>
-            </div>
-            <div className="item">
-              <a href="">Github</a>
+              <a href="https://github.com/dazejs/daze/issues" target="_blank">讨论列表</a>
             </div>
           </Col>
           <Col xxl={6} xl={6} lg={12} md={12} sm={24} xs={24}>

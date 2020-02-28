@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import AppHeader from '../components/header';
 import './app.less';
 import Home from './home';
