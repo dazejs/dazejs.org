@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Layout, Menu } from 'antd'
 import { useParams, Link } from 'react-router-dom'
 import { useMarkdown } from '../../hooks/use-markdown'
@@ -7,6 +7,7 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css';
 import './index.less'
 import Footer from '../../components/footer'
+import FromContext from '../../context/from'
 
 const { Content, Sider } = Layout
 const { SubMenu } = Menu
@@ -46,6 +47,8 @@ export default function () {
 
   const { data } = useMarkdown(mdKey)
 
+  const from = useContext(FromContext)
+
   return (
     <div className="app-wrap">
       <Layout>
@@ -56,14 +59,19 @@ export default function () {
             defaultOpenKeys={['start', 'core', 'base', 'adv']}
             style={{ height: '100%', borderRight: 0 }}
           >
-            <SubMenu
-              key="start"
-              title="开始"
-            >
-              <Menu.Item key="quick-start">
-                <Link to={`/docs/quick-start`}>快速上手</Link>
-              </Menu.Item>
-            </SubMenu>
+            {
+              from.from === 'bb' ? null : (
+                <SubMenu
+                  key="start"
+                  title="开始"
+                >
+                  <Menu.Item key="quick-start">
+                    <Link to={`/docs/quick-start`}>快速上手</Link>
+                  </Menu.Item>
+                </SubMenu>
+              )
+            }
+            
             <SubMenu
               key="core"
               title="核心概念"
