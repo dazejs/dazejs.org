@@ -2,6 +2,8 @@
 
 框架集成了 `winston` 日志模块，提供了各种功能强大的日志处理模块，你可以通过它们来定制自己的日志处理功能。
 
+---
+
 ## 日志配置
 
 日志配置文件位于 `src/config/logger.js`
@@ -23,9 +25,9 @@ export default {
 - `level`: 只有小于或者等于该级别的日志才会被输出，默认 `info`
 - `format`: 日志格式化，默认输出`[timestap] [level] - message`, 配置属性可以参考 [winston formats](https://github.com/winstonjs/winston#formats)
 
-::: warning
-每个通道必须配置一个 `driver` 参数，来表示该通道使用哪个驱动运行
-:::
+> 每个通道必须配置一个 `driver` 参数，来表示该通道使用哪个驱动运行
+
+---
 
 ## 日志驱动
 

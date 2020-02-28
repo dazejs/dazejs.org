@@ -1,22 +1,27 @@
-# 验证
+# 验证器
 
-## 验证器
+对于请求数据或者其它数据，推荐使用便捷的验证器进行合法性验证
 
-### 定义
+---
+
+## 定义验证器
+
 为具体的验证场景定义一个验证器类，在需要验证的时候调用该验证器
 
-使用 `@Validator(name)` 来标记这是一个验证器：
+验证器类必须继承 `Validator` 基类
 
 ```ts
-import { Validator, Email } from '@dazejs/framework';
+import { Validator, email } from '@dazejs/framework';
 
-export default class User extends Validator{
-  @Email() email;
+export default class User extends Validator {
+  @email() email;
 }
 
 ```
 
-### 验证数据
+---
+
+## 验证数据
 
 在需要 `User` 验证器的控制器中，使用`this.validate(data, name)`进行验证：
 
@@ -58,9 +63,9 @@ export default class Post extends Controller {
 
 ```
 
-::: tip
-如果检查失败，会根据请求类型返回相应的错误信息
-:::
+> 如果检查失败，会根据请求类型返回相应的错误信息
+
+---
 
 ## 验证规则
 
@@ -74,7 +79,7 @@ export default class Post extends Controller {
 
 当字段值小于`10`或者大于`20` 时候，错误信息就会生成 `username must be between 10 and 20`
 
-
+> 所有验证装饰器都提供了 `小驼峰` 和 `大驼峰` 的写法
 
 ### **通用规则**
 

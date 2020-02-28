@@ -1,7 +1,8 @@
----
-sidebarDepth: 2
----
 # 模型
+
+模型可以理解为数据抽象层，模型提供了许多便捷的数据操作接口
+
+---
 
 ## 实体
 
@@ -101,6 +102,8 @@ export class User extends Entity {
 }
 ```
 
+---
+
 ## 查询模型
 
 #### 查询单个模型
@@ -143,7 +146,7 @@ for (const item of res) {
 }
 ```
 
-
+---
 
 ## 新增模型
 
@@ -168,6 +171,8 @@ await user.create({
 });
 ```
 
+---
+
 ## 更新模型
 
 更新数据前我们需要先取出数据，然后进行更新
@@ -180,17 +185,13 @@ res.age = 10
 await res.save();
 ```
 
-::: tip
-`save` 方法会自动判断是更新还是新增操作
-:::
+> `save` 方法会自动判断是更新还是新增操作
+> 
+> 不要调用 `save` 方法进行多次数据写入。
 
-::: warning
-不要调用 `save` 方法进行多次数据写入。
-:::
-
+---
 
 ## 删除模型
-
 
 #### 删除当前模型
 
@@ -210,6 +211,8 @@ await res.delete();
 const user = new User();
 user.destroy(1, 2, 3)
 ```
+
+---
 
 ## 自动时间戳
 
@@ -278,6 +281,8 @@ export class User extends Entity {
 }
 ```
 
+---
+
 ## 软删除
 
 在实际项目中，对数据频繁使用删除操作会导致性能问题，软删除的作用就是把数据加上删除标记，而不是真正的删除，同时也便于需要的时候进行数据的恢复
@@ -318,6 +323,8 @@ const res = await user.get(1);
 console.log(res)
 ```
 
+---
+
 ## 模型输出
 
 一般通过模型查询到的结果否是模型实例, 我们可以通过模型方法来获取模型的真实数据
@@ -341,6 +348,8 @@ const user = new User();
 const res = await user.get(1);
 console.log(res.getAttributes())
 ```
+
+---
 
 ## 关联关系
 

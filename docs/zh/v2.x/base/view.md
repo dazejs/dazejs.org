@@ -3,6 +3,8 @@
 
 模板引擎的使用请参考 [Nunjucks 文档（中文）](https://mozilla.github.io/nunjucks/cn/templating.html)
 
+---
+
 ## 渲染模板
 使用 `render` 方法返回
 
@@ -32,6 +34,8 @@ return this.render('path/to/hello.njk', {
 })
 ```
 这样就调用了 `views/path/to/hello.njk` 模板文件
+
+---
 
 ## 传递数据
 

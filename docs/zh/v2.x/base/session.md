@@ -2,6 +2,8 @@
 
 因为HTTP协议本身是无状态的，`session` 提供了一种保存用户请求信息的途径。
 
+---
+
 ## 配置
 `session` 的配置位于 `src/config/session.js`
 
@@ -12,6 +14,8 @@
 - `signed`: 是否加签，默认 `true`
 - `autoCommit`: 是否自动提交，默认 `true`
 - `connection`: 当 `store` 为 `redis` 的时候，使用哪个连接配置(`src/config/database.js`)
+
+---
 
 ## 操作 Session
 
@@ -53,6 +57,8 @@ request.session().flush()
 request.session().flash('key', 'value')
 ```
 
+---
+
 ## 使用 Redis
 
 将配置文件的 `store` 设置为 `redis` 并且配置对应的 `connection` 即可
@@ -65,6 +71,5 @@ export default {
   //...
 }
 ```
-::: tip
-`connection` 为 `src/config/database.js` 中的 `redis` 的属性
-:::
+
+> `connection` 为 `src/config/database.js` 中的 `redis` 的属性

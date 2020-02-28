@@ -1,5 +1,8 @@
 # 请求
+
 很多情况，我们都需要根据请求的详细信息来进行逻辑处理，我们可以使用 `Request` 的实例来进行请求相关操作。
+
+---
 
 
 ## 请求对象
@@ -19,6 +22,8 @@ export default class Post extends Controller {
 }
 
 ```
+
+---
 
 
 ## 请求信息
@@ -50,6 +55,8 @@ console.log(request.getHeader('accept'))
 ### `request.getBody()`
 
 获取请求体 `body`
+
+> 框架默认启用 `body` 解析，如果不需要可以在入口文件使用 `app.disableBodyParser()` 来关闭该功能
 
 ### `request.getFiles()`
 
@@ -114,7 +121,7 @@ console.log(request.getHeader('accept'))
 
 返回最佳匹配的 `types`，否则为 `false`。 `type` 值可能是一个或多个 `mime` 类型的字符串，如 `application/json`，扩展名称如 `json`，或数组 `["json", "html", "text/plain"]`。
 
-```js
+```ts
 // Accept: text/html
 request.acceptsTypes('html');
 // => "html"
@@ -134,11 +141,9 @@ request.acceptsTypes('application/json');
 
 返回最佳匹配的 `Accept-Encoding`，否则为 `false`
 
-::: tip
-应该将identity 作为编码之一
-:::
+> 应该将identity 作为编码之一
 
-```js
+```ts
 // Accept-Encoding: gzip
 request.acceptsEncodings('gzip', 'deflate', 'identity');
 // => "gzip"
@@ -151,7 +156,7 @@ request.acceptsEncodings(['gzip', 'deflate', 'identity']);
 
 返回最佳匹配的 `charsets`，否则为 `false`。
 
-```js
+```ts
 // Accept-Charset: utf-8, iso-8859-1;q=0.2, utf-7;q=0.5
 request.acceptsCharsets('utf-8', 'utf-7');
 // => "utf-8"
@@ -164,7 +169,7 @@ request.acceptsCharsets(['utf-7', 'utf-8']);
 
 返回最佳匹配的 `langs`，否则为 `false`。
 
-```js
+```ts
 // Accept-Language: en;q=0.8, es, pt
 request.acceptsLanguages('es', 'en');
 // => "es"
@@ -181,6 +186,7 @@ request.acceptsLanguages(['en', 'es']);
 
 根据名称获取 `session` 的值
 
+---
 
 ## 请求方法
 
@@ -214,16 +220,17 @@ request.acceptsLanguages(['en', 'es']);
 
 判断请求是否 `OPTIONS` 类型
 
+---
+
 ## 参数获取
 
 ### 获取参数
 
 #### `Request#getParam([name [,default]])`
+
 请求对象提供了 `getParam` 和 `getParams` 方法来获取变量值：
 
-::: tip
-param方法可以获取body，url参数的输入变量，所有参数可以通过param方法统一获取
-:::
+> `getParam` 方法可以获取 `body`，`url` 参数的输入变量，所有参数可以通过 `getParam` 方法统一获取
 
 ```ts {8,10}
 const { Controller, route, http } = require('@dazejs/framework')
@@ -252,6 +259,8 @@ class Post extends Controller {
   }
 }
 ```
+
+---
 
 ## 参数筛选
 

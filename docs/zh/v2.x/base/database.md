@@ -1,7 +1,6 @@
----
-sidebarDepth: 2
----
 # 数据库
+
+数据库模块提供了数据库连接、查询构建器等功能
 
 ## 连接数据库
 
@@ -22,11 +21,13 @@ export default {
 };
 ```
 
-使用 `this.db()` 来连接数据库, 默认参数 `default`, 即配置文件的 `default` 属性 
+使用 `this.db()` 来连接数据库, 默认参数 `default`, 即 `database` 配置文件的 `default` 属性 
 
 ```ts
 this.db('default')
 ```
+
+---
 
 ## 原生查询
 
@@ -76,6 +77,8 @@ const affected = await this.db().delete('delete from users where age > ?', [20])
 ```ts
 await this.db().query('drop table users')
 ```
+
+---
 
 ## 查询构建器
 
@@ -429,12 +432,15 @@ const users = await this.db()
   .find()
 ```
 
-::: warning
-- 加锁时所有扫描过的行都会被锁上，因此使用悲观锁务必确定走了索引，而不是全表扫描，全表扫描相当于锁表操作
-- `update`、`delete`、`insert` 操作会自动给语句加排他锁，所以在这三种语句后面不能加`lockForUpdate`/`sharedLock`，否则会报错
-- 事务提交、进程结束、进程中断都会自动释放锁
-- 无论加共享锁还是排他锁都不影响普通 `select` 查询，因为普通查询时不会给语句加锁
-:::
+> 加锁时所有扫描过的行都会被锁上，因此使用悲观锁务必确定走了索引，而不是全表扫描，全表扫描相当于锁表操作
+> 
+> `update`、`delete`、`insert` 操作会自动给语句加排他锁，所以在这三种语句后面不能加 `lockForUpdate`/`sharedLock`，否则会报错
+> 
+> 事务提交、进程结束、进程中断都会自动释放锁
+> 
+> 无论加共享锁还是排他锁都不影响普通 `select` 查询，因为普通查询时不会给语句加锁
+
+---
 
 ## 事务处理
 

@@ -2,7 +2,9 @@
 
 中间件可以在请求到控制器之间的逻辑层，可以在控制器之前做一些逻辑处理。
 
-![](./assets/middleware-1.png)
+---
+
+<!-- ![](./assets/middleware-1.png) -->
 
 ## 定义
 
@@ -19,9 +21,7 @@ export default class ExampleMiddleware extends Middleware {
 
 ```
 
-::: warning
-`next()` 的结果必须使用 `return` 返回, `next()` 总是返回一个 `Response` 对象
-:::
+> `next()` 的结果必须使用 `return` 返回， `next()` 总是返回一个 `Response` 对象
 
 
 
@@ -41,6 +41,8 @@ export default class ExampleMiddleware extends Middleware {
 
 ```
 
+---
+
 
 ## 使用
 
@@ -48,7 +50,7 @@ export default class ExampleMiddleware extends Middleware {
 
 ### 在控制器中使用中间件
 
-- 对控制器类使用：
+**对控制器类使用**
 
 ```ts {5}
 import { Controller, route, http, useMiddleware }from '@dazejs/framework'
@@ -62,11 +64,9 @@ export default class BookController extends Controller {
 
 ```
 
-::: tip
-中间件将会对该控制器的所有方法生效
-:::
+> 中间件将会对该控制器的所有方法生效
 
-- 对控制器方法使用：
+**对控制器方法使用**
 
 ```ts {7}
 import { Controller, route, http, use }from '@dazejs/framework'
@@ -83,11 +83,11 @@ export default class BookController extends Controller {
 
 ```
 
-::: tip
-中间件只会对该控制器的 `index` 方法生效
-:::
+> 中间件只会对该控制器的 `index` 方法生效
 
-## 前置
+---
+
+## 前置执行
 
 ```ts
 import { Middleware }from '@dazejs/framework'
@@ -101,7 +101,9 @@ export default class ExampleMiddleware extends Middleware {
 
 ```
 
-## 后置
+---
+
+## 后置执行
 
 ```ts
 import { Middleware }from '@dazejs/framework'
@@ -116,7 +118,5 @@ export default class ExampleMiddleware extends Middleware {
 
 ```
 
-::: tip
-`next()` 函数总是返回 `Response` 对象，详见 [Response](/zh/document/base/response.html) 小节
-:::
+> `next()` 函数总是返回 `Response` 对象，详见 `Response` 小节
 

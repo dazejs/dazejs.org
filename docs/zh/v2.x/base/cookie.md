@@ -1,7 +1,11 @@
 # Cookie
 
+可以通过 `Cookie` 类操作 `cookie`
+
 ## 读取 Cookie
-- 通过 `request` 对象获取：
+
+通过 `request` 对象获取：
+
 ```ts {8}
 import { route, Controller, http } from '@dazejs/framework'
 
@@ -15,7 +19,7 @@ export default class User extends Controller {
 }
 ```
 
-- 使用注入：
+使用注入：
 ```ts {6,8}
 import { Controller, route, http, cookieValue } from '@dazejs/framework'
 
@@ -28,6 +32,8 @@ export default class User extends Controller {
     }
 }
 ```
+
+---
 
 ## 响应 Cookie
 `cookie` 是跟随响应一起发送的，我们我们需要将 `Cookie` 实例附加在响应对象上来设置 `cookie`
@@ -63,6 +69,8 @@ export default class User extends Controller {
 }
 ```
 
+---
+
 ## 配置 Cookie
 
 框架提供了 `cookie` 的默认配置，配置文件位于 `src/config/cookie.js`，默认使用该配置文件的配置来设置 `cookie`:
@@ -86,6 +94,4 @@ export default class User extends Controller {
 }
 ```
 
-::: tip
-单独设置 `signed` 配置后，获取 `cookie` 的时候需要传入一致的 `signed` 配置: `this.request.cookieValue('username', { signed: false })`
-:::
+> 单独设置 `signed` 配置后，获取 `cookie` 的时候需要传入一致的 `signed` 配置: `this.request.cookieValue('username', { signed: false })`

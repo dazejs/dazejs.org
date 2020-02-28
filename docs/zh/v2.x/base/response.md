@@ -1,7 +1,10 @@
 # 响应
-<style> table { display: table!important; } </style>
 
-## 输出
+可以通过友好的响应对象操作 `Http` 响应
+
+---
+
+## 数据输出
 
 大部分情况只要直接在控制器方法返回数据即可
 ```ts {7}
@@ -10,7 +13,7 @@ import { Controller, route, http } from '@dazejs/framework'
 @Route('/users')
 export default class User extends Controller {
     @http.get('/:id')
-    show(id) {
+    show(id: number) {
         return `user id: ${id}`
     }
 }
@@ -23,20 +26,21 @@ import { Response, route, controller, http } from '@dazejs/framework'
 @route('users')
 export default class User extends Controller {
     @http.get()
-    show(id) {
+    show(id: number) {
         return this.response('im a data', 200)
     }
 }
 ```
 #### `this.response([data [, code = 200 [, headers = {}]]])`
 
-`this.response()` 可以直接创建  `Response` 实例
-
-`response` 函数接收3个参数
+`response` 方法可以接收3个参数
 - `data`: 响应数据
 - `code`: 响应状态码, 默认200
 - `headers`: 响应头
 
+> `this.response()` 可以直接创建  `Response` 实例
+
+---
 
 ## 响应数据
 
@@ -56,6 +60,8 @@ export default class Post extends Controller {
 }
 ```
 
+---
+
 ## 响应状态码
 
 使用 `response().setCode([code])` 方法设置需要响应状态码
@@ -73,6 +79,8 @@ export default class Post extends Controller {
     }
 }
 ```
+
+---
 
 ## 响应头
 
@@ -94,9 +102,7 @@ export default class Post extends Controller {
 }
 ```
 
-::: tip
-setData、setCode、setHeader 等方法支持链式调用，状态码默认为 200
-:::
+> setData、setCode、setHeader 等方法支持链式调用，状态码默认为 200
 
 ## 成功响应
 
@@ -129,6 +135,8 @@ export default class User extends Controller {
 }
 ```
 
+> 所有方法都提供了对应的 `小驼峰` 和 `大驼峰` 写法
+
 | 状态码 | 方法                          |
 | ------ | ----------------------------- |
 | 100    | Continue()                      |
@@ -153,6 +161,9 @@ export default class User extends Controller {
 | 306    | Unused()                        |
 | 307    | TemporaryRedirect()             |
 | 308    | PermanentRedirect()             |
+
+
+---
 
 ## 错误响应
 
@@ -236,6 +247,8 @@ export default class User extends Controller {
 | 510    | NotExtended()                   |
 | 511    | NetworkAuthenticationRequired() |
 
+---
+
 ## 重定向
 
 #### 重定向到地址
@@ -307,6 +320,8 @@ export default class Post extends Controller {
 </p>
 <!-- ... -->
 ```
+
+---
 
 ## 下载文件
 

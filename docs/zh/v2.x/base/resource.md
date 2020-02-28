@@ -1,6 +1,8 @@
-# API 资源
+# 资源层
 
-资源支持在服务接口与返回给用户的 `JSON` 之间添加一层转换层
+资源层就是在服务接口与返回给用户的 `JSON` 之间添加一层转换层
+
+---
 
 ## 资源定义
 
@@ -19,25 +21,9 @@ export default class User extends Resource {
 
 ```
 
-::: tip
-每个资源类都需要实现 `resolve` 方法 
-:::
-<!-- 
-我们也可以使用 `Daze CLI` 工具创建控制器：
+> 每个资源类都需要实现 `resolve` 方法 
 
-```bash
-daze make resource <resourceName>
-```
-
-例如，创建一个 `User` 资源类：
-
-```bash
-daze make resource resource/user
-``` -->
-
-<!-- ::: tip
-默认创建目录位于 `src/app` 下，创建资源类的的时候可以带上自定义的目录名
-::: -->
+---
 
 ## 核心概念
 
@@ -47,16 +33,17 @@ daze make resource resource/user
 
 ## 资源转换
 
-在控制器中，我们可以直接返回 `this.resource()` 生成的 `Resource` 实例可以，框架会自动处理
+在控制器中，我们可以直接返回 `this.resource()` 生成的 `Resource` 实例，框架会自动处理
 
 ```ts
 import { Controller, route,  http } from '@dazejs/framework';
+import UserResource from '../resources/user'
 
 @route('/users')
 export default class User extends Controller {
   @http.get('/:id')
   show() {
-    return this.resource('user').item({
+    return this.resource(UserResource).item({
       username: 'Dazejs',
     })
   }
@@ -64,11 +51,12 @@ export default class User extends Controller {
 
 ```
 
-不是在控制器中，我们可以调用 `Resource` 实例的 `transform()` 方法来手动转换
+如果不是在控制器中，我们可以调用 `Resource` 实例的 `transform()` 方法来手动转换
 
 
 ```ts
 import { Service } from '@dazejs/framework';
+import UserResource from '../resources/user'
 
 export default class User extends Service {
   getItemById(id) {
@@ -76,14 +64,15 @@ export default class User extends Service {
       id,
       username: 'Dazejs',
     };
-    return this.resource('user').item(user).transform();
+    return this.resource(UserResource).item(user).transform();
   }
 }
 
 ```
-::: tip
-也可以使用 `this.item(data, validator)` 来调用
-:::
+
+> 也可以使用 `this.item(data, validator)` 来调用
+
+---
 
 ## 单个资源
 
@@ -104,6 +93,8 @@ export default class User extends Controller {
 }
 
 ```
+
+---
 
 ## 资源集合
 
@@ -146,7 +137,7 @@ export default class User extends Controller {
 }
 ```
 
-如果你想要禁止包装最外层资源，可以调用资源类提供的 `withoutKey()` 方法
+如果想要禁止包装最外层资源，可以调用资源类提供的 `withoutKey()` 方法
 
 ```ts
 import { Controller, route, http } from '@dazejs/framework';
@@ -169,7 +160,9 @@ export default class User extends Controller {
 
 ```
 
-如果你想修改包装属性，可以调用资源类提供的 `setKey(key)` 方法
+如果想修改包装属性，可以调用资源类提供的 `setKey(key)` 方法
+
+---
 
 ## 资源嵌套
 

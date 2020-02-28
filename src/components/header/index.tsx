@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Layout, Row, Col, Menu, Icon } from 'antd'
 import Logo from '@src/assets/logo-small.png';
 import './index.less'
 import { Link } from 'react-router-dom'
+import CommonContext from '../../context/common'
 
 const { Header } = Layout
 const { SubMenu } = Menu
 
 export default function () {
+
+  const common = useContext(CommonContext)
   return (
     <Header className='app-header'>
       <Row>
@@ -21,23 +24,39 @@ export default function () {
           <div className="menu">
             <Menu
               mode="horizontal"
-              defaultSelectedKeys={['2']}
+              defaultSelectedKeys={[`${common.version}`]}
               style={{ lineHeight: '64px' }}
+              onSelect={({ key }) => {
+                common.setVersion(key)
+              }}
             >
-              <Menu.Item key="1">
-                <Link to="/">首页</Link>
-              </Menu.Item>
-              <Menu.Item key="2">
-                <Link to="/docs/v2.x/quick-start">文档</Link>
-              </Menu.Item>
-              <Menu.Item key="3">生态</Menu.Item>
-              <SubMenu title={(<span>
-                版本<Icon type="caret-down" style={{ color: "#aaa", marginLeft: 5 }} />
-              </span>)}>
-                <Menu.Item>v1.x</Menu.Item>
+              <SubMenu
+                title={(<span>
+                  {common.version}<Icon type="caret-down" style={{ color: "#aaa", marginLeft: 5 }} />
+                </span>)}
+                key="version"
+              >
+                <Menu.Item key="v1.x">v1.x</Menu.Item>
+                <Menu.Item key="v2.x">v2.x</Menu.Item>
               </SubMenu>
             </Menu>
           </div>
+          <div className="menu">
+            <Menu
+              mode="horizontal"
+              defaultSelectedKeys={[`${common.version}`]}
+              style={{ lineHeight: '64px' }}
+            >
+              <Menu.Item key="home">
+                <Link to="/">首页</Link>
+              </Menu.Item>
+              <Menu.Item key="docs">
+                <Link to={`/docs/quick-start`}>文档</Link>
+              </Menu.Item>
+              {/* <Menu.Item key="3">生态</Menu.Item> */}
+            </Menu>
+          </div>
+          
         </Col>
       </Row>
     </Header>

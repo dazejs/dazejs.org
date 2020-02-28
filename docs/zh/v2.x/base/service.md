@@ -1,6 +1,8 @@
-# 服务
+# 服务层
 
-服务（Service）是从控制器抽象出来的一层特定逻辑层，该层主要用于定义从第三方服务获取数据的方法。
+服务层（Service）是从控制器抽象出来的一层特定逻辑层，该层主要用于定义从第三方服务获取数据的方法。
+
+---
 
 ## 服务定义
 
@@ -18,6 +20,7 @@ export default class User extends Service {
 
 ```
 
+---
 
 ## 服务调用
 
@@ -29,7 +32,7 @@ export default class User extends Service {
 import { Controller, route, http } from '@dazejs/frameowrk'
 import UserService from '../service/user'
 
-@Route('users')
+@route('users')
 export default class User extends Controller {
   @http.get(':id')
   async show(id) {
@@ -50,7 +53,7 @@ export default class User extends Controller {
 import { Controller, route, http, inject } from '@dazejs/frameowrk'
 import UserService from '../service/user'
 
-@Route('users')
+@route('users')
 export default class User extends Controller {
 
   @inject(UserService) userService: UserService;
