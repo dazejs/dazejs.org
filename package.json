@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "clean": "rimraf ./dist",
-    "start": "npm run clean && cross-env NODE_ENV=development TS_NODE_PROJECT=\"build/tsconfig-for-webpack-config.json\" webpack-dev-server --config=build/webpack.config.ts",
+    "start": "cross-env NODE_ENV=development TS_NODE_PROJECT=\"build/tsconfig-for-webpack-config.json\" webpack-dev-server --config=build/webpack.config.ts",
     "build": "npm run clean && cross-env NODE_ENV=production TS_NODE_PROJECT=\"build/tsconfig-for-webpack-config.json\" webpack --config=build/webpack.config.ts"
   },
   "repository": {
