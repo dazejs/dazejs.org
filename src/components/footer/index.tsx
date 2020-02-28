@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './index.less'
 import { Row, Col, Icon } from 'antd'
 import { Link } from 'react-router-dom'
+import FromContext from '../../context/from'
 
 export default function () {
-  return <div className="app-footer">
+  const from = useContext(FromContext)
+
+  return from.from === 'bb' ? null : <div className="app-footer">
     <div className="footer-box">
       <p className="logo">DAZE.JS</p>
       <div className="content">
