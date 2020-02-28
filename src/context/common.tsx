@@ -4,7 +4,7 @@ const Context = React.createContext({
   version: 'v2.x',
   setVersion: (v :string) => {
     console.log(v)
-  }
+  },
 });
 
 export default Context;

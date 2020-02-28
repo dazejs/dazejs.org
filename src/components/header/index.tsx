@@ -4,14 +4,21 @@ import Logo from '@src/assets/logo-small.png';
 import './index.less'
 import { Link } from 'react-router-dom'
 import CommonContext from '../../context/common'
+import FromContext from '../../context/from'
+// import qs from 'qs'
 
 const { Header } = Layout
 const { SubMenu } = Menu
 
 export default function () {
-
+  // const localtion = useLocation()
+  // const query = qs.parse(localtion.search || '', {
+  //   ignoreQueryPrefix: true
+  // })
   const common = useContext(CommonContext)
+  const from = useContext(FromContext)
   return (
+    from.from === 'bb' ? null :
     <Header className='app-header'>
       <Row>
         <Col xxl={4} xl={5} lg={8} md={8} sm={24} xs={24}>
