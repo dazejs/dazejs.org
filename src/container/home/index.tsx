@@ -5,7 +5,7 @@ import Banner from '../../components/banner'
 import Footer from '../../components/footer'
 import Superman from '@src/assets/superman.jpeg'
 import hljs from 'highlight.js/lib/highlight';
-import bash from 'highlight.js/lib/languages/javascript';
+import bash from 'highlight.js/lib/languages/bash';
 import 'highlight.js/styles/atom-one-dark.css';
 hljs.registerLanguage('bash', bash);
 

@@ -16,7 +16,7 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    ["@babel/plugin-transform-runtime"],
+    "syntax-dynamic-import",
     [
       "import",
       {

@@ -5,6 +5,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 import { Configuration } from 'webpack';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import webpack from 'webpack';
 
 const isProd = process.env.NODE_ENV === 'production';
 const isDev = process.env.NODE_ENV === 'development';
@@ -112,6 +114,7 @@ const config: Configuration = {
     ]
   },
   plugins: [
+    process.env.ANALYZER && new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].[hash].css",
       chunkFilename: "[name].[chunkhash:5].chunk.css"
@@ -134,8 +137,9 @@ const config: Configuration = {
         minifyURLs: true,
       } : undefined,
     }),
-    new HtmlWebpackHarddiskPlugin()
-  ],
+    new HtmlWebpackHarddiskPlugin(),
+    new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh/),
+  ].filter(Boolean),
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.scss', '.css'],
     modules: [
@@ -143,6 +147,7 @@ const config: Configuration = {
       'src',
     ],
     alias: {
+      '@ant-design/icons/lib/dist$': path.resolve(__dirname, '../src/icons.ts'),
       '@src': path.resolve(__dirname, '../src'),
       '@docs': path.resolve(__dirname, '../docs'),
     }
@@ -164,15 +169,18 @@ const config: Configuration = {
     splitChunks: {
       cacheGroups: {
         default: false,
-        // buildup: {
-        //   chunks: 'all',
-        //   test: /[\\/]node_modules[\\/]/
-        // },
+        buildup: {
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          priority: 11,
+          reuseExistingChunk: false
+        },
         vendor: {
           name: 'vendor',
-          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          test: /[\\/]node_modules[\\/](antd)[\\/]/,
           chunks: 'all',
-          priority: 10
+          priority: 10,
+          reuseExistingChunk: false
         }
       }
     },
@@ -180,6 +188,13 @@ const config: Configuration = {
       new OptimizeCSSAssetsPlugin({})
     ],
   },
+  // externals: {
+  //   'react': 'react',
+  //   'react-dom': "react-dom",
+  //   'react-router': 'react-dom',
+  //   'moment': 'moment',
+  //   'antd': 'antd'
+  // }
 
 };
 

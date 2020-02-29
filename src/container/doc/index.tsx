@@ -3,11 +3,17 @@ import { Layout, Menu } from 'antd'
 import { useParams, Link } from 'react-router-dom'
 import { useMarkdown } from '../../hooks/use-markdown'
 import marked from 'marked'
-import hljs from 'highlight.js'
+// import hljs from 'highlight.js'
+import hljs from 'highlight.js/lib/highlight';
+import bash from 'highlight.js/lib/languages/bash';
+import typescript from 'highlight.js/lib/languages/typescript';
 import 'highlight.js/styles/atom-one-dark.css';
 import './index.less'
 import Footer from '../../components/footer'
 import FromContext from '../../context/from'
+
+hljs.registerLanguage('bash', bash);
+hljs.registerLanguage('typescript', typescript);
 
 const { Content, Sider } = Layout
 const { SubMenu } = Menu
