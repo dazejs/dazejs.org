@@ -3,10 +3,23 @@ import React, { useState } from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import AppHeader from '../components/header';
 import './app.less';
-import Home from './home';
-import Doc from './doc'
 import FromContext from '../context/from'
 import qs from 'qs'
+import Loadable from 'react-loadable';
+
+function Loading() {
+  return <div></div>
+}
+
+const LoadableHomeComponent = Loadable({
+  loader: () => import('./home'),
+  loading: Loading,
+});
+
+const LoadableDocComponent = Loadable({
+  loader: () => import('./doc'),
+  loading: Loading,
+});
 
 
 export default function () {
@@ -24,10 +37,10 @@ export default function () {
         <Layout>
           <Switch>
             <Route path='/' exact>
-              <Home />
+              <LoadableHomeComponent />
             </Route>
             <Route path='/docs/:name1/:name2?/:name3?'>
-              <Doc />
+              <LoadableDocComponent />
             </Route>
           </Switch>
         </Layout>
