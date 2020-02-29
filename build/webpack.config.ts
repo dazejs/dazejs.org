@@ -164,10 +164,10 @@ const config: Configuration = {
     splitChunks: {
       cacheGroups: {
         default: false,
-        buildup: {
-          chunks: 'all',
-          test: /[\\/]node_modules[\\/]/
-        },
+        // buildup: {
+        //   chunks: 'all',
+        //   test: /[\\/]node_modules[\\/]/
+        // },
         vendor: {
           name: 'vendor',
           test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
