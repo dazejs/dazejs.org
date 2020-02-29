@@ -14,6 +14,7 @@ const { SubMenu } = Menu
 
 const renderer = new marked.Renderer()
 
+
 renderer.code = function (code, language) {
   return '<pre><code class="hljs ' + language + '">' + hljs.highlightAuto(code).value + '</code></pre>';
 };

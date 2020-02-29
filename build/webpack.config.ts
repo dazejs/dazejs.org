@@ -20,7 +20,7 @@ const config: Configuration = {
   output: {
     path: path.resolve(__dirname, '../dist/assets'),
     filename: isDev ? 'bundle.js' : '[name].[hash].js',
-    publicPath: '/assets/'
+    publicPath: isDev ? '/assets/' : 'https://dazejs.zewail.cn/assets/'
   },
   module: {
     exprContextCritical: false,
