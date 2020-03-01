@@ -19,7 +19,7 @@ jobs:
         BUILD_SCRIPT: npm install && npm run build
     - name: Deploy to CDN source station
       run: |
-        echo ${{ secrets.ZEWAIL_KEY }} > ./rsa_id
-        chmod ./rsa_id 400
+        echo ${{ secrets.ZEWAIL_KEY }} > ./id_rsa
+        chmod ./id_rsa 400
         sh scripts/rsa.sh
         sh scripts/transport.sh
