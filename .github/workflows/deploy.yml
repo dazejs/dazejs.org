@@ -21,5 +21,9 @@ jobs:
       run: |
         echo ${{ secrets.ZEWAIL_KEY }} > ./id_rsa
         chmod ./id_rsa 400
-        sh scripts/rsa.sh
-        sh scripts/transport.sh
+        mkdir -p ~/.ssh
+        rm -f ~/.ssh/known_hosts
+        ssh-keyscan -t rsa 111.229.3.72 >> ~/.ssh/known_hosts
+        tar -czvf ./assets.tar.gz ./dist
+        scp -i ./id_rsa ./assets.tar.gz root@111.229.3.72:/home/webroot
+        ssh -i ./id_rsa root@111.229.3.72 'cd /home/webroot && tar -xzf assets.tar.gz && rm -f assets.tar.gz && docker restart zewail-nginx'
