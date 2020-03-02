@@ -31,7 +31,7 @@ export default class User extends Controller {
     }
 }
 ```
-#### `this.response([data [, code = 200 [, headers = {}]]])`
+### `this.response([data [, code = 200 [, headers = {}]]])`
 
 `response` 方法可以接收3个参数
 - `data`: 响应数据
