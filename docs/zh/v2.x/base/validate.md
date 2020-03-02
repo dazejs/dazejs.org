@@ -29,7 +29,7 @@ export default class User extends Validator {
 import { Controller, route, http } from '@dazejs/framework';
 import userValidator from '../validator/user'
 
-@route('/posts)
+@route('/posts')
 export default class Post extends Controller {
   @http.get()
   index() {
@@ -52,7 +52,7 @@ export default class Post extends Controller {
 import { Controller, route, http } from '@dazejs/framework';
 import userValidator from '../validator/user'
 
-@route('/posts)
+@route('/posts')
 export default class Post extends Controller {
   @http.get()
   index() {
