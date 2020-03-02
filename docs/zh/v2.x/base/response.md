@@ -172,7 +172,7 @@ export default class User extends Controller {
 ```ts {10}
 import { Controller, route, http } from '@dazejs/framework'
 
-@route('users)
+@route('users')
 export default class User extends Controller {
     @http.get(':id')
     show(id) {
@@ -190,7 +190,7 @@ export default class User extends Controller {
 ```ts {10}
 import { Controller, route, http } from '@dazejs/framework'
 
-@route('users)
+@route('users')
 export default class User extends Controller {
     @http.get(':id')
     show(id) {
