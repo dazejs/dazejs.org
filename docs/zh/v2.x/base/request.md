@@ -11,7 +11,7 @@
 
 在控制器中，可以直接使用控制器的实例属性获取 `Request` 实例：
 ```ts {7}
-import { Controller, route, http } from '@dazejs/framework;
+import { Controller, route, http } from '@dazejs/framework';
 
 @route('/posts')
 export default class Post extends Controller {
