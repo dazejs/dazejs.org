@@ -13,10 +13,7 @@
 // app.js
 export default {
   // ...
-  cluster: {
-    enable: true, /* enable cluster mode */
-    //...
-  },
+  cluster: true,
   // ...
 }
 ```
@@ -31,10 +28,7 @@ export default {
 // app.js
 export default {
   // ...
-  cluster: {
-    workers: 4, /* Number of work processes, set to 0 by default using CPU cores */
-    //...
-  },
+  workers: 4,
   // ...
 }
 ```
