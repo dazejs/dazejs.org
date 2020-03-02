@@ -40,7 +40,7 @@ export default class Post extends Controller {
 // { 'user-agent': 'curl/7.22.0',
 //   host: '127.0.0.1:8000',
 //   accept: '*/*' }
-console.log(request.headers);
+console.log(request.getHeaders());
 ```
 
 ### `request.getHeader(name)`
