@@ -59,6 +59,56 @@ export default class User extends Controller {
 
 > `@http.all` 装饰器会使用所有 `http` 模块支持的方法，详细信息见 `http` 模块的 `http.METHODS` 属性
 
+
+### 路由多前缀
+
+在某些情况下，我们可能需要支持一个控制器多个路由前缀的情况
+
+```ts
+import { Controller, route, http } from '@dazejs/framework'
+
+// 通过添加多个 `@route` 参数来注册多个前缀的路由
+@route('/users', '/users-old')
+export default class User extends Controller {
+    // get /users
+    @http.get()
+    index() {
+        // ...
+    }
+
+    // put /users/:id
+    @http.put(':id')
+    update(id) {
+        // ...
+    }
+}
+```
+
+### 方法多路由
+
+
+在某些情况下，我们也可能需要同一个控制器方法支持多个路由访问
+
+
+```ts
+import { Controller, route, http } from '@dazejs/framework'
+
+@route('/users')
+export default class User extends Controller {
+    @http.get()
+    @http.post('/post')
+    index() {
+        // ...
+    }
+
+    @http.all('/all', ['get', 'post']) // 第二个参数可选，默认加载http所有method（不推荐）
+    index2() {
+        // ...
+    }
+}
+```
+
+
 ---
 
 ## 路由参数
@@ -78,6 +128,8 @@ export default class User extends Controller {
 ```
 
 > 路由参数根据定义顺序注入
+
+
 
 ---
 
@@ -156,3 +208,56 @@ export default class Post extends Controller {
 | get      | /posts/:id/edit | edit(id)       | 编辑（显示表单） |
 | put      | /posts/:id      | save(id)       | 保存你编辑的数据 |
 | delete   | /posts/:id      | destroy(id)    | 删除对应id的内容 |
+
+---
+
+## 路由原理
+
+### 路由结构
+
+`Daze.js` 采用了类似前缀树的数据结构来存储路由，例如我们有一个 `path`: `/business/users/posts/:post_id`, 那么它的结构就是一个链表:
+
+```text
++----------+     +-----------+     +-------+     +----------+
+| business | --> |   users   | --> | posts | --> | :post_id |
++----------+     +-----------+     +-------+     +----------+
+```
+
+接下来如果继续注册 `/business/orders/:order_id`, 那么这个结构就会变成
+
+
+```text
++----------+     +-----------+     +-------+     +----------+
+| business | --> |   users   | --> | posts | --> | :post_id |
++----------+     +-----------+     +-------+     +----------+
+  |
+  |
+  v
++----------+     +-----------+
+|  orders  | --> | :order_id |
++----------+     +-----------+
+```
+
+### 路由类型
+
+为了增加匹配的性能，我们将路由分成了三种类型 `静态类型`, `正则类型`, `全匹配类型`
+
+**静态类型**
+
+静态类型就是指字符串完全匹配的类型，避免所有节点都需要正则匹配，降低性能
+
+**正则类型**
+
+只有注册了路由参数/正则的节点才会进行正则匹配
+
+**全匹配类型**
+
+全匹配类型是指以 `/*` 结尾的路由，它可以匹配后续任何参数
+
+### 路由优先级
+
+框架会自动为注册的路由指定优先级，优先级策略如下：
+
+- 节点经过次数最多的路由，优先级最高
+- 全匹配路由优先级最低，为了保证不会因为全匹配路由覆盖了其他类型的路由
+

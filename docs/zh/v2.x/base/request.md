@@ -281,3 +281,174 @@ export default class Post extends Controller {
 }
 ```
 
+---
+
+## 请求装饰器
+
+框架提供了许多请求相关的装饰器
+
+### `@http.query(key?: string, defaultValue?: any)`
+
+根据 `query` 名称注入请求的 `query` 参数
+
+```ts
+import { Controller, route, http }from '@dazejs/framework'
+
+@route('posts')
+export default class Post extends Controller {
+    @http.get()
+    index(
+        @http.query('name') name: string
+    ) {
+        return name;
+    }
+}
+```
+
+### `@http.params(key?: string, defaultValue?: any)`
+
+根据参数名称注入请求的任何参数，包括 `query`, `body` 等
+
+```ts
+import { Controller, route, http }from '@dazejs/framework'
+
+@route('posts')
+export default class Post extends Controller {
+    @http.get()
+    index(
+        @http.params('name') name: string
+    ) {
+        return name;
+    }
+}
+```
+
+### `@http.header(key?: string, defaultValue?: any)`
+
+根据 `header` 名称注入请求的 `header` 值, 不加参数获取所有 `header` 头
+
+```ts
+import { Controller, route, http }from '@dazejs/framework'
+
+@route('posts')
+export default class Post extends Controller {
+    @http.get()
+    index(
+        @http.header('content-type') contentType: string
+    ) {
+        return contentType;
+    }
+}
+```
+
+### `@http.body(key?: string, defaultValue?: any)`
+
+根据 `body` 名称注入请求的 `body` 值, 不加参数获取所有 `body`
+
+```ts
+import { Controller, route, http }from '@dazejs/framework'
+
+@route('posts')
+export default class Post extends Controller {
+    @http.post()
+    index(
+        @http.body('name') name: string
+    ) {
+        return name;
+    }
+}
+```
+
+### `@http.cookieValue(key?: string, defaultValue?: any)`
+
+根据 `cookie` 名称注入请求的 `cookie` 值, 不加参数获取所有 `cookie`
+
+```ts
+import { Controller, route, http }from '@dazejs/framework'
+
+@route('posts')
+export default class Post extends Controller {
+    @http.get()
+    index(
+        @http.cookieValue('user_id') userId: string
+    ) {
+        return userId;
+    }
+}
+```
+
+
+### `@http.sessionValue(key?: string, defaultValue?: any)`
+
+根据 `session` 名称注入请求的 `session` 值, 不加参数获取所有 `session`
+
+```ts
+import { Controller, route, http }from '@dazejs/framework'
+
+@route('posts')
+export default class Post extends Controller {
+    @http.get()
+    index(
+        @http.sessionValue('user_id') userId: string
+    ) {
+        return userId;
+    }
+}
+```
+
+### `@http.req()` / `@http.originalReq()`
+
+获取 `Node.js` 原始的请求上下文 `req` 对象
+
+```ts
+import { Controller, route, http }from '@dazejs/framework'
+import { IncomingMessage } from 'http'
+
+@route('posts')
+export default class Post extends Controller {
+    @http.get()
+    index(
+        @http.req() req: IncomingMessage
+    ) {
+        console.log(req)
+    }
+}
+```
+
+
+### `@http.res()` / `@http.originalRes()`
+
+获取 `Node.js` 原始的请求上下文 `res` 对象
+
+```ts
+import { Controller, route, http }from '@dazejs/framework'
+import { ServerResponse } from 'http'
+
+@route('posts')
+export default class Post extends Controller {
+    @http.get()
+    index(
+        @http.res() res: ServerResponse
+    ) {
+        console.log(res)
+    }
+}
+```
+
+### `@http.request()``
+
+获取框架提供的人上下文 `Request` 实例, 在控制器中等同于 `this.request`
+
+```ts
+import { Controller, route, http, Request }from '@dazejs/framework'
+
+@route('posts')
+export default class Post extends Controller {
+    @http.get()
+    index(
+        @http.request() request: Request
+    ) {
+        console.log(request)
+    }
+}
+```
