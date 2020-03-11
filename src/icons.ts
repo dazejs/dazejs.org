@@ -1,2 +1,3 @@
-export { default as GithubOutline } from '@ant-design/icons/lib/outline/GithubOutline';
-export { default as CaretDownOutline } from '@ant-design/icons/lib/outline/CaretDownOutline';
+export { default as AppstoreOutlined } from '@ant-design/icons/AppstoreOutlined';
+export { default as CaretDownOutlined } from '@ant-design/icons/CaretDownOutlined';
+export { default as GithubOutlined } from '@ant-design/icons/GithubOutlined';

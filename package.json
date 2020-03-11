@@ -65,7 +65,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
-    "antd": "^3.26.11",
+    "antd": "^4.0.0",
     "core-js": "^3.6.4",
     "highlight.js": "^9.18.1",
     "marked": "^0.8.0",

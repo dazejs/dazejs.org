@@ -435,7 +435,7 @@ export default class Post extends Controller {
 }
 ```
 
-### `@http.request()``
+### `@http.request()`
 
 获取框架提供的人上下文 `Request` 实例, 在控制器中等同于 `this.request`
 

@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { Layout, Row, Col, Menu, Icon } from 'antd'
+import { Layout, Row, Col, Menu } from 'antd'
 import Logo from '@src/assets/logo-small.png';
 import './index.less'
-import { Link } from 'react-router-dom'
 import CommonContext from '../../context/common'
 import FromContext from '../../context/from'
-// import qs from 'qs'
+import { AppstoreOutlined, CaretDownOutlined } from '../../icons'
+import { Link } from 'react-router-dom'
 
 const { Header } = Layout
 const { SubMenu } = Menu
@@ -39,7 +39,7 @@ export default function () {
             >
               <SubMenu
                 title={(<span>
-                  {common.version}<Icon type="caret-down" style={{ color: "#aaa", marginLeft: 5 }} />
+                    {common.version}<CaretDownOutlined style={{ color: "#aaa", marginLeft: 5 }} />
                 </span>)}
                 key="version"
               >
@@ -48,6 +48,37 @@ export default function () {
               </SubMenu>
             </Menu>
           </div>
+            <div className="menu">
+              <Menu
+                mode="horizontal"
+                style={{ lineHeight: '64px' }}
+                defaultOpenKeys={[]}
+              >
+                <SubMenu
+                  title={(<span>
+                    <AppstoreOutlined style={{ color: "#aaa", marginLeft: 5 }} />生态<CaretDownOutlined style={{ color: "#aaa", marginLeft: 5 }} />
+                  </span>)}
+                  key="ecosystem"
+                >
+                  <Menu.Item key="dubbo" className="ecosystem-menu">
+                    <div className="ecosystem-item">
+                      <Link to="/docs/ecosystem/dubbo">
+                        <p className="tit">Apache Dubbo</p>
+                        <p className="desc">使用 Dubbo 协议进行 RPC 通信</p>
+                      </Link>
+                    </div>
+                  </Menu.Item>
+                  <Menu.Item key="websocket" className="ecosystem-menu">
+                    <div className="ecosystem-item">
+                      <Link to="/docs/ecosystem/websocket">
+                        <p className="tit">Websocket</p>
+                        <p className="desc">轻松构建 websocket 网关</p>
+                      </Link>
+                    </div>
+                  </Menu.Item>
+                </SubMenu>
+              </Menu>
+            </div>
           <div className="menu">
             <Menu
               mode="horizontal"
@@ -60,7 +91,6 @@ export default function () {
               <Menu.Item key="docs">
                 <Link to={`/docs/quick-start`}>文档</Link>
               </Menu.Item>
-              {/* <Menu.Item key="3">生态</Menu.Item> */}
             </Menu>
           </div>
           

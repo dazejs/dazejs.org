@@ -66,3 +66,45 @@ export default class User extends Controller {
 }
 
 ```
+
+---
+
+## 自定义名称
+
+使用通用的 `@component()` 装饰器为 `Service` 类命名
+
+```ts
+import { Service, component } from '@dazejs/framework';
+
+@component('userService')
+export default class User extends Service {
+  async getItemById() {
+    const data = await ajax.get(/* ... */)
+    return data
+  }
+}
+
+```
+
+使用自定义名称注入
+
+```ts
+import { Controller, route, http, inject } from '@dazejs/frameowrk'
+import UserService from '../service/user'
+
+@route('users')
+export default class User extends Controller {
+
+  @inject() userService: UserService;
+
+  @http.get(':id')
+  async show(id) {
+    const user = await this.userService.getItemById(id);
+    return user;
+  }
+}
+
+```
+
+> 当需要注入的属性名与自定义名称一致的时候，可以省略参数
+

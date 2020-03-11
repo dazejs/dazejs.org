@@ -97,3 +97,37 @@ export default class Example {
   // ...
 }
 ```
+
+---
+
+## 模块重命名
+
+框架提供了 `@component()` 装饰器来为模块进行重命名操作（实际上增加了绑定到容器的 `key`）。
+
+```ts
+import { Service, component } from '@daze/framework'
+
+@component('exampleService')
+export default class Example extends Service {
+  // ...
+}
+```
+
+自动识别变量名进行注入 (根据注入的变量名找到自定义的模块名称进行注入)
+
+```ts {5}
+import { route, http, Controller, inject } from '@dazejs/framework';
+import ExampleService from '../service/example'
+
+@route('/examples')
+export default class Example extends Controller {
+  @inject() exampleService: ExampleService;
+
+  @http.get()
+  index() {
+    // this.exampleService.foo()
+  }
+}
+```
+
+> `@inject()` 的使用方法和依赖注入详见 [依赖注入](#/docs/core/di) 章节

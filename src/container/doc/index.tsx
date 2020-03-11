@@ -35,9 +35,6 @@ renderer.heading = function (text, level) {
           </h${level}>`;
 };
 
-// renderer.codespan = function (text) {
-//   return '<mark>' + text + '</mark>';
-// };
 
 marked.setOptions({
   renderer,
@@ -63,7 +60,7 @@ export default function () {
           <Menu
             mode="inline"
             defaultSelectedKeys={[mdKey]}
-            defaultOpenKeys={['start', 'core', 'base', 'adv']}
+            defaultOpenKeys={['start', 'core', 'base', 'adv', 'ecosystem']}
             style={{ height: '100%', borderRight: 0 }}
           >
             {
@@ -86,11 +83,11 @@ export default function () {
               <Menu.Item key="core/container">
                 <Link to={`/docs/core/container`}>IOC 容器</Link>
               </Menu.Item>
-              <Menu.Item key="core/di">
-                <Link to={`/docs/core/di`}>依赖注入</Link>
-              </Menu.Item>
               <Menu.Item key="core/autoload">
                 <Link to={`/docs/core/autoload`}>自动加载</Link>
+              </Menu.Item>
+              <Menu.Item key="core/di">
+                <Link to={`/docs/core/di`}>依赖注入</Link>
               </Menu.Item>
               <Menu.Item key="core/provider">
                 <Link to={`/docs/core/provider`}>提供者</Link>
@@ -152,6 +149,17 @@ export default function () {
               </Menu.Item>
               <Menu.Item key="adv/process">
                 <Link to={`/docs/adv/process`}>多进程</Link>
+              </Menu.Item>
+            </SubMenu>
+            <SubMenu
+              key="ecosystem"
+              title="生态"
+            >
+              <Menu.Item key="ecosystem/dubbo">
+                <Link to={`/docs/ecosystem/dubbo`}>Apache Dubbo</Link>
+              </Menu.Item>
+              <Menu.Item key="ecosystem/websocket">
+                <Link to={`/docs/ecosystem/websocket`}>Websocket</Link>
               </Menu.Item>
             </SubMenu>
           </Menu>

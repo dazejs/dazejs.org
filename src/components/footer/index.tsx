@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import './index.less'
-import { Row, Col, Icon } from 'antd'
+import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import FromContext from '../../context/from'
+import { GithubOutlined } from '../../icons'
 
 export default function () {
   const from = useContext(FromContext)
@@ -58,7 +59,7 @@ export default function () {
             <p>Daze.js 是基于 Node.js 的 Web 全栈框架，它具有高性能，高扩展性，体验友好的特性，是一款面向未来的框架。</p>
             <div className="icons">
               <a href="https://github.com/dazejs/daze" target="_blank">
-                <Icon type="github" style={{ fontSize: 25 }} />
+                <GithubOutlined style={{ fontSize: 25 }} />
               </a>
             </div>
           </Col>

@@ -232,3 +232,51 @@ export default class User extends Resource {
   ]
 }
 ```
+
+---
+
+## 自定义名称
+
+使用通用的 `@component()` 装饰器为 `Resource` 类命名
+
+```ts
+import { Resource, component } from '@dazejs/framework';
+
+@component('userResource')
+export default class User extends Resource {
+  resolve(data) {
+    return {
+      ...data,
+    };
+  }
+}
+
+```
+
+使用自定义名称注入
+
+```ts
+import { Controller, route, http, inject } from '@dazejs/framework';
+import UserResource from '../resources/user'
+
+@Route('/users')
+export default class User extends Controller {
+
+  @inject() userResource: UserResource;
+
+  @http.get()
+  index() {
+    const users = [{
+        age: 18,
+        name: 'Dazejs',
+      },{
+        age: 18,
+        name: 'Zewail',
+      }];
+    return this.userResource.collection(users);
+  }
+}
+
+```
+
+> 当需要注入的属性名与自定义名称一致的时候，可以省略参数
