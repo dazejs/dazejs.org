@@ -5,7 +5,7 @@ import CommonContext from '../context/common'
 import Main from './main'
 
 export default function () {
-  const [version, setVersion] = useState('v2.x')
+  const [version, setVersion] = useState('v3.x')
 
   return (
     <CommonContext.Provider value={{
