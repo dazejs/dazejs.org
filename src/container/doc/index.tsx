@@ -72,6 +72,9 @@ export default function () {
                   <Menu.Item key="quick-start">
                     <Link to={`/docs/quick-start`}>快速上手</Link>
                   </Menu.Item>
+                  <Menu.Item key="upgrade-guide">
+                    <Link to={`/docs/upgrade-guide`}>升级指南</Link>
+                  </Menu.Item>
                 </SubMenu>
               )
             }
