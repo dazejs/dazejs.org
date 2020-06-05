@@ -1,6 +1,6 @@
 # 自动加载
 
-`Daze.js` 会自动扫描 `src/app` 目录，按功能分类加载，我们可以通过继承不同类型的基类，来进行功能分类
+`Daze.js` 会自动扫描 `src/app` 目录，按功能分类加载，我们可以通过不用的类型装饰器来表示
 
 ---
 
@@ -135,15 +135,31 @@ export class Example {
 }
 ```
 
+**默认名称**
+
+默认使用 `class` 的名称的小驼峰
+
+默认绑定名字 `exampleService`
+```ts
+import { service } from '@daze/framework'
+
+@service()
+export class ExampleService {
+  sayHello() {
+    return 'hello dazejs';
+  }
+}
+```
+
 自动识别变量名进行注入 (根据注入的变量名找到自定义的模块名称进行注入)
 
 ```ts {5}
-import { controller, http, autowried } from '@dazejs/framework';
+import { controller, http, inject } from '@dazejs/framework';
 import ExampleService from '../service/example'
 
 @controller('/examples')
 export default class Example {
-  @autowried 
+  @inject() 
   exampleService: ExampleService;
 
   @http.get()
