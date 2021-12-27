@@ -10,7 +10,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
       
-    - name: Install and Build 🔧 Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+    - name: Install and Build
       run: |
         npm install
         npm run build
