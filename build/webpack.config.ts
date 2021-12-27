@@ -22,7 +22,7 @@ const config: Configuration = {
   output: {
     path: path.resolve(__dirname, '../dist/assets'),
     filename: isDev ? 'bundle.js' : '[name].[hash].js',
-    publicPath: isDev ? '/assets/' : 'https://dazejs.zewail.cn/assets/'
+    publicPath: '/assets/'
   },
   module: {
     exprContextCritical: false,
