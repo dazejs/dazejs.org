@@ -1,0 +1,12 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[14],{
+
+/***/ 471:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("# 中间件\n\n中间件可以在请求到控制器之间的逻辑层，可以在控制器之前做一些逻辑处理。\n\n![](./assets/middleware-1.png)\n\n## 定义\n\n`Middleware` 是一种特殊的组件，通过继承 `Middleware` 基础类来表示这是一个中间件类\n\n```ts\nimport { Middleware, Component }from '@dazejs/framework'\n\n@Component('version-supported')\nexport default class ExampleMiddleware extends Middleware {\n  resolve(request, next) {\n    return next()\n  }\n}\n\n```\n\n::: warning\n`next()` 的结果必须使用 `return` 返回, `next()` 总是返回一个 `Response` 对象\n:::\n\n\n\n例子：创建一个中间件，在参数 `version` 的值为 `v1` 的时候返回一个 `Does not support v1` 的响应信息\n\n```ts\nimport { Middleware, Component }from '@dazejs/framework'\n\n@Component('version-supported')\nexport default class ExampleMiddleware extends Middleware {\n  resolve(request, next) {\n    if (request.param('version') === 'v1') {\n      return this.response().BadRequest('Does not support v1');\n    }\n    return next()\n  }\n}\n\n```\n\n\n## 使用\n\n框架提供了 `@useMiddleware(name)` 装饰器来使用中间件\n\n### 在控制器中使用中间件\n\n- 对控制器类使用：\n\n```ts {5}\nimport { Controller, Route, Http, useMiddleware }from '@dazejs/framework'\n\n@Route('/books')\n@useMiddleware('version-supported')\nexport default class BookController extends Controller {\n  // ...\n}\n\n```\n\n::: tip\n`version-supported` 中间件将会对该控制器的所有方法生效\n:::\n\n- 对控制器方法使用：\n\n```ts {7}\nimport { Controller, Route, Http, useMiddleware }from '@dazejs/framework'\n\n@Route('/books')\nexport default class BookController extends Controller {\n  @Http.Get()\n  @useMiddleware('version-supported')\n  index() {\n    // ...\n  }\n}\n\n```\n\n::: tip\n`version-supported` 中间件只会对该控制器的 `index` 方法生效\n:::\n\n## 前置\n\n```ts\nimport { Middleware, Component }from '@dazejs/framework'\n\n@Component('example')\nexport default class ExampleMiddleware extends Middleware {\n  resolve(request, next) {\n    // todo\n    return next()\n  }\n}\n\n```\n\n## 后置\n\n```ts\nimport { Middleware, Component }from '@dazejs/framework'\n\n@Component('example')\nexport default class ExampleMiddleware extends Middleware {\n  async resolve(request, next) {\n    const response = await next()\n    // todo\n    return response\n  }\n}\n\n```\n\n::: tip\n`next()` 函数总是返回 `Response` 对象，详见 [Response](/zh/document/base/response.html) 小节\n:::\n\n");
+
+/***/ })
+
+}]);

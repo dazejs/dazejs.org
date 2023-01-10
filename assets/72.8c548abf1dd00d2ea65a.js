@@ -1,0 +1,12 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[72],{
+
+/***/ 529:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("# 提供者\n\n框架底层是一个容器，所有的功能都是由提供者提供，提供者即提供能力的服务/模块，可以通过提供者文件将提供者注册到框架。\n\n---\n\n## 定义提供者\n\n\n```ts\nexport class CustomProvider {\n  // ...\n}\n```\n---\n\n## 加载提供者\n\n定义好提供者后，我们需要配置框架让框架加载该提供者\n\n加载提供者的配置在 `src/config/app.js` 配置文件中：\n\n```ts\nimport CustomProvider from '../../privider/custom'\n\nexport default {\n  // ...\n  providers: [\n    CustomProvider, \n  ],\n  // ...\n}\n```\n\n---\n\n## 自动提供\n\n使用 `@provide` 装饰器，可以将 `Provider` 上的方法自动绑定到容器中\n\n```ts\nimport { provide } from '@dazejs/framework'\n\nexport class CustomProvider {\n  @provide()\n  redis() {\n    return new Redis({\n      // ...\n    })\n  }\n}\n```\n\n上述例子中，该提供者像框架注册了以 `redis` 作为 key 将 `Redis` 注册到了容器中，如果想用其他 key，我可以传入参数到 `@provide` 实现\n\n```ts\n@provide('custom-key')\nredis() {\n  return new Redis({\n    // ...\n  })\n}\n```\n\n默认情况下， `@provide` 以单例的形式绑定，如果想绑定多例, 可以将第二个参数 `isShared` 设置为 `false`\n\n```ts\n@provide('custom-key', false)\nredis() {\n  return new Redis({\n    // ...\n  })\n}\n```\n\n---\n\n## Hooks\n\n框架在运行提供者的时候，会执行两个 `Hook` (`register` 和 `launch`):\n\n### `register()`\n\n每次注册提供者框架都会调用提供者的 `register` 方法\n\n```ts\n\nexport class CustomProvider {\n  register() {\n    // todo\n  }\n}\n\n```\n\n> `register` 方法支持异步\n\n### `lanuch()`\n\n框架会在执行完所有提供者的 `register Hook` 之后执行 `launch`, 所以我们可以在 `launch` 方法中获取到所有已注册的提供者，而无需关心注册顺序\n\n\n```ts\n\nexport default class CustomProvider {\n  lanuch() {\n    // todo\n  }\n}\n```\n> `lanuch` 方法支持异步\n\n\n### 注册时绑定\n\n绝大部分情况我们都可以在 `register` 方法中进行绑定容器操作\n\n```ts\n\nexport class CustomProvider{\n  register() {\n    this.app.singleton('some_key', (app) => {\n      return new SomeCustomClass(app);\n    }, true);\n  }\n}\n```\n\n---\n\n## 提供者之间的依赖\n\n提供者之前也可以定义依赖，例如提供者 `A` 依赖了提供者 `B`, 我们只需要将 `A` 注册到框架，那么 `B` 也会注册到框架中\n\n**提供者 B**\n```ts\nimport { provide } from '@dazejs/framework'\n\nexport class B {\n  @provide()\n  b() {\n    return 'b'\n  }\n}\n```\n使用 `@depend` 配置依赖关系\n\n**提供者 A**\n```ts\nimport { provide, depend } from '@dazejs/framework'\nimport { B } from './b'\n\n@depend(B)\nexport class A {\n  @provide()\n  a() {\n    return 'a'\n  }\n}\n```\n\n");
+
+/***/ })
+
+}]);

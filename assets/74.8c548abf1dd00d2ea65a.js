@@ -1,0 +1,12 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[74],{
+
+/***/ 531:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("# WebSocket\n\n基于 `Daze.js` 的 Websocket 提供者，基于 `socket.io` 实现\n\n---\n\n## 安装\n\n```bash\n$ npm install --save @dazejs/websocket-provider\n```\n\n---\n\n## 注册服务\n\n修改项目 `src/config/app.ts` 文件, 添加 `WebsocketServiceProvider` 到 `providers` 数组中\n\n```ts\nimport { WebsocketServiceProvider } from '@dazejs/websocket-provider';\n\nexport default {\n  // ...\n  providers: [\n    // ...\n    WebsocketServiceProvider,\n  ]\n}\n```\n\n---\n\n## 使用\n\n### 定义 `websocket` 服务\n\n通过继承 `Websock` 基础类来表示这是一个 `websocket` 服务\n\n```ts\nimport { Websocket } from '@dazejs/websocket-provider';\n\nexport class Example extends Websocket {\n\n}\n```\n\n### 监听事件 \n\n通过继承 `ws.subscribe()` 装饰器来监听事件\n\n```ts\nimport { Websocket, ws } from '@dazejs/websocket-provider';\n\nexport class Example extends Websocket {\n  @ws.subscribe('event')\n  handle() {\n    // ...\n  }\n}\n```\n\n### 获取数据\n\n**使用默认注入参数获取**\n\n```ts\n@ws.subscribe('event')\nhandle(data: any) {\n  console.log(data)\n}\n```\n\n同时也支持多个参数\n\n```ts\n@ws.subscribe('event')\nhandle(arg1: any, arg2: any, arg3: any) {\n  console.log(arg1, arg2, arg3)\n}\n```\n\n**使用装饰器注入**\n\n使用 `@ws.message()` 注入单个数据\n\n```ts\n@ws.subscribe('event')\nhandle(@ws.message() data: any) {\n  console.log(data)\n}\n```\n\n使用 `@ws.messages()` 注入多个数据\n\n```ts\n@ws.subscribe('event')\nhandle(@ws.messages() args: any[]) {\n  console.log(...args)\n}\n```\n\n---\n\n## 响应事件\n\n**通过 Response 对象响应事件**\n\n```ts\n@ws.subscribe('event')\nhandle(@ws.messages() args: any[]) {\n  const data = 'test'\n  return this.response('event1', data)\n}\n```\n\n也可以通过 Response 提供的方法修改事件名和参数\n\n```ts\n@ws.subscribe('event')\nhandle(@ws.messages() args: any[]) {\n  const arg1 = 'test1';\n  const arg2 = 'test2';\n  return this.response().setEvent('event2').setParameters(arg1, arg2)\n}\n```\n**通过返回结构化的对象来响应事件**\n\n```ts\n@ws.subscribe('event')\nhandle(@ws.messages() args: any[]) {\n  return {\n    event: 'event2',\n    data: 'test',\n  }\n}\n```");
+
+/***/ })
+
+}]);

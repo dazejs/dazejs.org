@@ -1,0 +1,12 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[41],{
+
+/***/ 498:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("# 服务层\n\n服务层（Service）是从控制器抽象出来的一层特定逻辑层，该层主要用于定义从第三方服务获取数据的方法。\n\n---\n\n## 服务定义\n\n`Service` 是一种特殊的组件，通过继承 `Service` 基础类来表示这是一个服务类\n\n```ts\nimport { Service } from '@dazejs/framework';\n\nexport default class User extends Service {\n  async getItemById() {\n    const data = await ajax.get(/* ... */)\n    return data\n  }\n}\n\n```\n\n---\n\n## 服务调用\n\n### 方法获取\n\n在控制器中，使用 `this.service(name)` 的方式来获取 `service` 实例\n\n```ts\nimport { Controller, route, http } from '@dazejs/frameowrk'\nimport UserService from '../service/user'\n\n@route('users')\nexport default class User extends Controller {\n  @http.get(':id')\n  async show(id) {\n    const userService = this.service(UserService);\n    const user = await userService.getItemById(id);\n    return user;\n  }\n}\n\n\n```\n\n### 注入\n\n使用 `@inject()` 装饰器注入到类属性或者方法中进行使用。\n\n```ts\nimport { Controller, route, http, inject } from '@dazejs/frameowrk'\nimport UserService from '../service/user'\n\n@route('users')\nexport default class User extends Controller {\n\n  @inject(UserService) userService: UserService;\n\n  @http.get(':id')\n  async show(id) {\n    const user = await this.userService.getItemById(id);\n    return user;\n  }\n}\n\n```\n\n---\n\n## \b自定义名称\n\n使用通用的 `@component()` 装饰器为 `Service` 类命名\n\n```ts\nimport { Service, component } from '@dazejs/framework';\n\n@component('userService')\nexport default class User extends Service {\n  async getItemById() {\n    const data = await ajax.get(/* ... */)\n    return data\n  }\n}\n\n```\n\n使用自定义名称注入\n\n```ts\nimport { Controller, route, http, inject } from '@dazejs/frameowrk'\nimport UserService from '../service/user'\n\n@route('users')\nexport default class User extends Controller {\n\n  @inject() userService: UserService;\n\n  @http.get(':id')\n  async show(id) {\n    const user = await this.userService.getItemById(id);\n    return user;\n  }\n}\n\n```\n\n> 当需要注入的属性名与自定义名称一致的时候，可以省略参数\n\n");
+
+/***/ })
+
+}]);

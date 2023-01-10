@@ -1,0 +1,12 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[77],{
+
+/***/ 534:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("# 缓存\n\n## 配置\n\n应用的缓存配置位于配置文件 `config/cache.ts`：\n\n```ts\nexport default {\n    /**\n     * 默认使用的存储器\n     * 可选：memory ｜ redis\n     */\n    store: 'memory'\n    \n}\n```\n\n缓存默认使用内存作为存储器，我们还支持第三方存储器 `Redis`\n\n如果使用 redis 作为存储器, 会默认使用 `cache` 连接，如果未定义 `cache` 连接，则使用 `default` 连接，也可以直接手动指定连接\n\n## 获取缓存实例\n\n我们可以通过便捷函数或者依赖注入的方式获取缓存实例\n\n**便捷函数**\n\n```ts\nimport { cache } from '@dazejs/framework'\n\ncache().get('example') // 使用 cache() 函数直接获取实例\ncache('redis').get('example') // 手动指定使用 redis 作为存储器\ncache('redis', 'myConnectionName').get('example') // 手指定 redis 作为存储器并指定自定义的 redis 连接\n```\n\n**依赖注入**\n\n\n```ts\nimport { Cache, Controller, Get, Autowired } from '@dazejs/framework'\n\n@Controller()\nexport class Example {\n\n    @Autowired\n    cache: Cache\n\n    @Get()\n    index() {\n        // 直接使用\n        this.cache.set('example', true, 100)\n        // 使用redis自定义连接\n        this.cache.store('redis').set('example', true, 100)\n        // 使用redis\n        this.cache.store('redis', 'myConnectionName').set('example', true, 100)\n    }\n}\n\n```\n\n## 缓存使用\n\n> 所有方法均为异步函数\n\n#### 从缓存中获取数据\n\n使用 get 方法来获取一个缓存，如果需要的话你可以传递第二个参数到 get 方法指定缓存项不存在时返回的自定义默认值\n\n```ts\nconst value = await cache().get('key')\nconst value = await cache().get('key', 'default')\n```\n\n#### 检查缓存项是否存在\n\n使用 has 方法来判断缓存项是否存在\n\n```ts\nif (await cache().has('key')) {\n    // TODO\n}\n```\n\n#### 数值增加/减少\n\nincrement 和 decrement 方法可用于调整缓存中的整型数值。这两个方法都可以接收第二个参数来指明缓存项数值增加和减少的数目, 默认为 1：\n\n```ts\nawait cache().increment('key')\nawait cache().increment('key', amount)\nawait cache().decrement('key')\nawait cache().decrement('key', amount)\n```\n\n#### 在缓存中存储数据\n\n使用 set 方法来存储数据, 需要指定存储时间\n\n```ts\nawait cache().set('key', 'value', seconds)\n```\n\n#### 永久存储数据\n\nforever 方法用于持久化存储数据到缓存，这些值必须通过 remove 方法手动从缓存中移除：\n\n```ts\nawait cache().forever('key', 'value')\n```\n> 如果使用 redis 存储器，则根据 redis 策略决定是否移除\n\n#### 从缓存中移除数据\n\n使用 remove 方法从缓存中移除缓存项数据：\n\n```ts\nawait cache().remove('key')\n```\n\n如果要清除所有缓存，可以通过 flush 方法\n```ts\nawait cache().flush()\n```\n> ⚠️⚠️⚠️ 清除缓存是从缓存系统中移除所有数据，所以在使用这个方法时如果其他应用与本应用有共享缓存时需要格外注意。\n");
+
+/***/ })
+
+}]);
