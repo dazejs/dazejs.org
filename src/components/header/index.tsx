@@ -45,6 +45,8 @@ export default function () {
               >
                 <Menu.Item key="v1.x">v1.x</Menu.Item>
                 <Menu.Item key="v2.x">v2.x</Menu.Item>
+                <Menu.Item key="v3.x">v3.x</Menu.Item>
+                <Menu.Item key="v5.x">v5.x</Menu.Item>
               </SubMenu>
             </Menu>
           </div>

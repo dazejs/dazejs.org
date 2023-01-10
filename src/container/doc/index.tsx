@@ -45,7 +45,7 @@ marked.setOptions({
 
 export default function () {
 
-  const { name1 = 'quick-start', name2 = '', name3 = '' } = useParams();
+  const { name1 = 'quick-start', name2 = '', name3 = '' } = useParams<any>();
 
   const mdKey = [name1, name2, name3].filter(Boolean).join('/')
 
@@ -71,9 +71,6 @@ export default function () {
                 >
                   <Menu.Item key="quick-start">
                     <Link to={`/docs/quick-start`}>快速上手</Link>
-                  </Menu.Item>
-                  <Menu.Item key="upgrade-guide">
-                    <Link to={`/docs/upgrade-guide`}>升级指南</Link>
                   </Menu.Item>
                 </SubMenu>
               )
@@ -127,25 +124,39 @@ export default function () {
               <Menu.Item key="base/middleware">
                 <Link to={`/docs/base/middleware`}>中间件</Link>
               </Menu.Item>
-              <Menu.Item key="base/database">
-                <Link to={`/docs/base/database`}>数据库</Link>
-              </Menu.Item>
-              <Menu.Item key="base/model">
-                <Link to={`/docs/base/model`}>模型</Link>
-              </Menu.Item>
+              
               <Menu.Item key="base/cookie">
                 <Link to={`/docs/base/cookie`}>Cookie</Link>
               </Menu.Item>
               <Menu.Item key="base/session">
                 <Link to={`/docs/base/session`}>Session</Link>
               </Menu.Item>
+             
             </SubMenu>
             <SubMenu
               key="adv"
               title="高级进阶"
             >
+              <Menu.Item key="adv/database">
+                <Link to={`/docs/adv/database`}>数据库</Link>
+              </Menu.Item>
+              <Menu.Item key="adv/model">
+                <Link to={`/docs/adv/model`}>ORM 模型</Link>
+              </Menu.Item>
+              <Menu.Item key="adv/redis">
+                <Link to={`/docs/adv/redis`}>Redis</Link>
+              </Menu.Item>
+              <Menu.Item key="adv/cache">
+                <Link to={`/docs/adv/cache`}>缓存</Link>
+              </Menu.Item>
+              <Menu.Item key="adv/schedule">
+                <Link to={`/docs/adv/schedule`}>任务调度</Link>
+              </Menu.Item>
               <Menu.Item key="adv/log">
                 <Link to={`/docs/adv/log`}>日志</Link>
+              </Menu.Item>
+              <Menu.Item key="adv/proxy">
+                <Link to={`/docs/adv/proxy`}>Http 代理</Link>
               </Menu.Item>
               <Menu.Item key="adv/mulenv">
                 <Link to={`/docs/adv/mulenv`}>多环境</Link>

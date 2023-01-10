@@ -65,6 +65,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.8.0",
     "antd": "^4.0.0",
     "core-js": "^3.6.4",
     "highlight.js": "^9.18.1",

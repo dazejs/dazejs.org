@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Context = React.createContext({
-  version: 'v2.x',
+  version: 'v5.x',
   setVersion: (v :string) => {
     console.log(v)
   },

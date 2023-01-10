@@ -23,5 +23,56 @@
     .action {
        margin-top: 28px;
     }
+
+    .github a {
+      color: #222;
+      margin-left: 5px;
+      &:hover {
+        color: @primary-color;
+      }
+    }
+  }
+//   .header-title-accent.has-cursor:after {
+//     width: 20px;
+//     height: 50px;
+//   }
+//   .header-title-accent {
+//       background: linear-gradient(90deg,#637bff 20%,#21c8f6 40%,#637bff 60%,#21c8f6 80%,#637bff);
+//       background-size: 200% auto;
+//       padding-right: 5px;
+//       color: #000;
+//       caret-color: #637bff;
+//       background-clip: text;
+//       text-fill-color: transparent;
+//       -webkit-background-clip: text;
+//       -webkit-text-fill-color: transparent;
+//   }
+//   .header-title-accent.has-cursor:after {
+//     content: "";
+//     display: inline-block;
+//     background: #21c8f6;
+//     margin-left: 0.1rem;
+//     will-change: opacity;
+//     animation: cursor-blink 1.2s infinite;
+//     width: 0.5rem;
+//     height: 2.2rem;
+//     position: relative;
+//     top: 0.5rem;
+//     left: 0.4rem;
+//     font-size: 2.2rem;
+// }
+}
+
+@keyframes cursor-blink {
+  0% {
+      opacity: 0
+  }
+
+  50% {
+      opacity: 1
+  }
+
+  to {
+      opacity: 0
   }
 }

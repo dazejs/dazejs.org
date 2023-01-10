@@ -3,7 +3,9 @@ import { Layout } from 'antd'
 import './index.less'
 import Banner from '../../components/banner'
 import Footer from '../../components/footer'
-import Superman from '@src/assets/superman.jpeg'
+
+
+import Superman from '@src/assets/superman.png'
 import hljs from 'highlight.js/lib/highlight';
 import bash from 'highlight.js/lib/languages/bash';
 import 'highlight.js/styles/atom-one-dark.css';
@@ -62,13 +64,7 @@ export default function () {
               <div className="code-box">
                 <pre>
                   <code className="hljs bash">
-                    {`  $ npm i -g @dazejs/cli
-
-  $ daze create project-name
-
-  ? Which one to use for development? (Use arrow keys)
-  ❯ typescript
-    javascript
+                    {`  $ npm init @dazejs/app project-name
 
   ? Which package manager you wany? (Use arrow keys)
   ❯ npm
